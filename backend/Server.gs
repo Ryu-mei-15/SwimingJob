@@ -100,7 +100,7 @@ function writeSnapshot_(state,meta){
   var verified=decodeRows_(sheet.getRange(1,1,rows.length,4).getDisplayValues());if(sha_(JSON.stringify(verified))!==meta.hash)throw new Error('Database verification failed');
   props_().setProperty('DB_META',JSON.stringify({sheet:meta.sheet,rows:rows.length,revision:meta.revision,hash:meta.hash,mutationId:meta.mutationId}));
 }
-// Run this function manually in the Apps Script editor, after adding private InitialAccount.gs.
+// Run through the temporary runInitialSetup wrapper in docs/SETUP.md; remove the wrapper before deployment.
 function setupSwimNote_(){return locked_(function(){
   if(props_().getProperty('DB_META'))throw new Error('初期設定済みです。既存データは変更していません。');
   if(typeof initialAccount_!=='function')throw new Error('非公開のInitialAccount.gsを追加してください。');

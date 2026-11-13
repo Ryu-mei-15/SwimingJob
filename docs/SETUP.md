@@ -10,8 +10,17 @@
    - `backend/AuthCrypto.gs`
    - `.local/InitialAccount.gs`（初期アカウント専用。GitHubへは追加しません）
 3. プロジェクトの設定でマニフェストファイルの表示を有効にし、`backend/appsscript.json` の内容を設定します。
-4. 関数 `setupSwimNote_` を編集画面から実行し、Googleの承認を済ませます。この処理で、指定済みの初期アカウントと「スイムノートDB」が作成されます。関数名末尾の `_` も含めて選択してください。
-5. 実行ログに表示されたスプレッドシートを開きます。共有設定は制限付きのまま使います。`DB_A` / `DB_B` はアプリ用なので直接書き換えません。
+4. `Server.gs` の末尾に、次の初期設定用関数を一時的に追加して保存します。末尾が `_` の関数は実行一覧に表示されないため、この関数から呼び出します。
+
+   ```javascript
+   function runInitialSetup() {
+     setupSwimNote_();
+   }
+   ```
+
+5. 上部の関数一覧で `runInitialSetup` を選んで実行し、Googleの承認を済ませます。この処理で、指定済みの初期アカウントと「スイムノートDB」が作成されます。
+6. 実行ログに表示されたスプレッドシートを開きます。共有設定は制限付きのまま使います。`DB_A` / `DB_B` はアプリ用なので直接書き換えません。
+7. 追加した `runInitialSetup` の3行だけを削除して保存し、デプロイへ進みます。元の `setupSwimNote_` は残します。
 
 初期アカウント設定ファイルには、パスワードそのものではなく、ランダムなsaltと検証値を設定済みです。パスワードをHTMLやconfig.jsonへ書く必要はありません。初期設定済みの状態でsetupSwimNote_を再実行しても、既存データは消去しません。
 
@@ -29,7 +38,7 @@ Apps Scriptで「デプロイ」→「新しいデプロイ」→「ウェブア
 
 ## 3. GitHub Pagesへ接続する
 
-1. リポジトリ直下の `config.json` にある `apiUrl` に、上記の `/exec` URLを入れます。URLにはパスワードやトークンを付けません。
+1. リポジトリ直下の **`config.json`** にある `apiUrl` に、上記の `/exec` URLを入れます。URLにはパスワードやトークンを付けません。`index.html` と `public/index.html` は公開時にこの設定から再生成されるため、HTML内のURLを直接編集しても公開時に上書きされます。
 2. Google側のScript Propertiesの `ALLOWED_ORIGIN` は `https://ryu-mei-15.github.io` に初期設定しています。独自ドメインに変える場合だけ、そのオリジンへ変更します。
 3. ソースをGitHubへ反映します。`.local/`、旧「プールバイト」フォルダ、名簿JSON・Excel・バックアップは `.gitignore` で除外しています。
 4. GitHubの Settings → Pages → Source を **GitHub Actions** にします。
@@ -37,6 +46,8 @@ Apps Scriptで「デプロイ」→「新しいデプロイ」→「ウェブア
 6. 予定URLは `https://ryu-mei-15.github.io/SwimingJob/` です。リポジトリ名のつづりは `SwimingJob` です。
 
 ローカルで作業する場合は `node tools/build.mjs` でルートとpublicのHTMLを更新します。GitHub上でconfig.jsonを編集した場合は、Actions内でHTMLを生成します。
+
+画面に「Google側の接続設定が未完了です」と出る場合は、まず `config.json` の `apiUrl` を確認してください。GitHub Actionsの最新実行が成功した後、サイトを再表示します。接続先が未設定、または公開HTMLと設定が一致しない場合は、公開前の検査で停止するようにしています。
 
 ## 4. 既存データを移行する
 
@@ -59,6 +70,7 @@ Apps Scriptで「デプロイ」→「新しいデプロイ」→「ウェブア
 
 ## 参照した公式仕様
 
+- [実行一覧での非公開関数の扱い](https://googleappsscript.blogspot.com/2010/06/hiding-helper-functions.html)
 - [Google Apps Scriptのウェブアプリ](https://developers.google.com/apps-script/guides/web)
 - [HtmlOutputとiframeの設定](https://developers.google.com/apps-script/reference/html/html-output)
 - [Google Apps ScriptのLock Service](https://developers.google.com/apps-script/reference/lock/)
