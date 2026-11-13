@@ -1,0 +1,15 @@
+node_modules/
+.local/
+.env*
+.clasprc.json
+.clasp.json
+.DS_Store
+*.zip
+*.xlsx
+*.csv
+*バックアップ*.json
+*バックアップ*.json
+*初期*json
+/プールバイト/
+/プールバイト/
+/スイムノート/

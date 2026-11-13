@@ -1,0 +1,1293 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; font-src 'none'; object-src 'none'; base-uri 'none'; frame-src https://script.google.com https://*.googleusercontent.com; form-action https://script.google.com https://*.googleusercontent.com">
+  <meta name="referrer" content="no-referrer">
+  <title>スイムノート｜進級テスト管理</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%232162c5'/%3E%3Cpath d='M7 16q6 6 13 0t13 0M7 25q6 6 13 0t13 0' fill='none' stroke='white' stroke-width='3'/%3E%3C/svg%3E">
+  <style>:root{color-scheme:light;--ink:#183454;--muted:#61788f;--blue:#2162c5;--blue-dark:#184c9b;--blue-pale:#eaf2ff;--border:#dae5f3;--background:#f2f6fc;--warning:#8a5912;--danger:#b0443d;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0;background:var(--background);color:var(--ink);font-size:14px;line-height:1.65}button,input,select,textarea{font:inherit;color:inherit}button{cursor:pointer}button:disabled{opacity:.4;cursor:not-allowed}a{color:inherit}button:focus-visible,a:focus-visible{outline:3px solid #4285e3;outline-offset:3px}input:focus,select:focus,textarea:focus{outline:2px solid #4285e3;outline-offset:1px}input,select,textarea{border:1px solid #cbd8de;border-radius:8px;background:white;padding:10px 12px;max-width:100%}input[type=date]{min-width:170px}input[type=checkbox],input[type=radio]{accent-color:var(--blue);width:17px;height:17px;vertical-align:middle}textarea{resize:vertical}h1,h2,p{margin-top:0}h1{font-size:30px;letter-spacing:.02em;line-height:1.35;margin-bottom:8px}h2{font-size:19px;margin-bottom:12px}p{margin-bottom:12px}[hidden]{display:none!important}.small{font-size:12px;color:var(--muted)}.print-only{display:none}
+/* The main actions stay within one horizontal work area. */
+.app-header{min-height:82px;padding:12px max(28px,calc((100vw - 1380px)/2));display:flex;align-items:center;gap:40px;background:#fff;border-bottom:1px solid var(--border)}.brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:750;font-size:20px;white-space:nowrap;line-height:1.4}.brand small{display:block;font-size:10px;font-weight:500;letter-spacing:.08em;color:var(--muted);margin-top:4px}.brand-mark{display:block;width:42px;height:42px;border-radius:12px;background:var(--blue)}.brand-mark svg{width:100%;fill:none;stroke:#fff;stroke-width:2.5}.header-nav{display:flex;align-self:stretch;align-items:center;gap:8px}.nav-item{background:none;border:0;border-radius:7px;padding:10px 14px;color:var(--muted);font-size:13px;font-weight:650;white-space:nowrap}.nav-item.active{color:var(--blue-dark);background:var(--blue-pale)}.nav-item:hover{background:#eff5ff}.header-actions{margin-left:auto;display:flex;align-items:center;gap:10px}.local-badge{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);margin-right:8px;white-space:nowrap}.local-badge>span{width:6px;height:6px;border-radius:100%;background:#4285e3}.button{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid transparent;border-radius:8px;min-height:42px;padding:10px 17px;font-size:13px;font-weight:650;text-decoration:none;transition:background .12s}.button svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.primary{background:var(--blue);color:#fff}.primary:hover{background:var(--blue-dark)}.secondary{background:#fff;border-color:#cbd9de}.secondary:hover{background:#eff5ff}.quiet{background:transparent;color:var(--muted)}.quiet:hover{background:#eef3f5}.text-button{background:none;border:0;padding:6px 0;color:var(--blue);font-size:12px;font-weight:650}.text-button:hover{text-decoration:underline}.app-shell{min-height:calc(100vh - 82px)}main{max-width:1436px;width:100%;padding:24px 28px 80px;margin:0 auto}.page-heading{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:20px}.page-heading h1{margin:0}.page-actions{display:flex;gap:10px}.subtitle{font-size:13px;color:var(--muted);margin:0}.eyebrow{font-size:10px;letter-spacing:.14em;font-weight:700;color:var(--blue);margin-bottom:8px}
+.overview{display:flex;align-items:center;gap:22px;background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 20px;margin-bottom:20px}.date-block{display:flex;align-items:center;gap:14px;flex:1;flex-wrap:wrap}.date-block label{font-size:13px;font-weight:650}.date-block input{font-size:15px;font-weight:600;background:#f8fafb;padding:8px 12px}.date-block>span{font-size:11px;color:var(--muted)}.overview-item{display:flex;align-items:center;gap:8px;border:0;border-left:1px solid var(--border);background:none;padding:0 0 0 22px;text-align:left;white-space:nowrap}.overview-item>span{font-size:11px;color:var(--muted)}.overview-item strong{font-size:23px;font-weight:650;font-variant-numeric:tabular-nums;line-height:1.3}.overview-item small{font-size:11px;font-weight:500;margin-left:5px;color:var(--muted)}.review-filter{padding-top:4px;padding-bottom:4px}.review-filter.has-issues strong{color:var(--warning)}.review-filter[aria-pressed=true]{background:#fff2d6;outline:5px solid #fff2d6;border-radius:5px}
+.class-section{margin-bottom:18px}.section-label{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:650;color:var(--muted);margin-bottom:9px}.class-tabs{display:flex;flex-wrap:wrap;gap:10px}.class-tab{display:flex;align-items:center;justify-content:space-between;gap:28px;min-width:140px;border:1px solid var(--border);border-radius:9px;padding:10px 17px;background:white;color:#4c6575;font-size:16px;font-weight:650;transition:background .12s}.class-tab small{font-size:18px;font-weight:600;font-variant-numeric:tabular-nums}.class-tab small span{font-size:10px;font-weight:500;margin-left:4px;opacity:.7}.class-tab:hover{border-color:#8aafe3;background:#f4f8ff}.class-tab.active{background:var(--blue);border-color:var(--blue);color:#fff;box-shadow:0 3px 9px #18345416}
+.roster-panel{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;box-shadow:0 4px 16px #223d4b03}.list-heading{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:17px 24px 10px}.list-heading>div{display:flex;align-items:center;gap:10px}.list-heading h2{font-size:18px;margin:0}.list-heading>div>span{font-size:12px;font-weight:600;border-radius:20px;padding:2px 9px;background:#eff3f5;color:#657987}.search-box{display:flex;align-items:center;gap:10px;border:1px solid var(--border);border-radius:8px;padding:0 12px;background:#fafcfd}.search-box svg{height:17px;width:17px;fill:none;stroke:#82949e;stroke-width:1.7;stroke-linecap:round}.search-box input{width:200px;border:0;background:none;font-size:12px;padding:8px 0}.search-box input:focus{outline:0}.search-box:focus-within{outline:2px solid #4285e3}.table-caption{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:0 24px 12px;font-size:11px;color:var(--muted)}.table-tools{display:flex;align-items:center;gap:22px}.hundred-legend{color:#7e581d}.hundred-legend b{font-size:11px;font-weight:650;background:#fff1cd;padding:3px 7px;border-radius:4px;margin-right:5px}.sort-label{font-size:11px}.table-scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;text-align:left;font-size:13px}th{font-size:11px;color:#586f7d;background:#edf3f6;font-weight:650;white-space:nowrap;border-top:1px solid var(--border);border-bottom:1px solid #d4e0e6;padding:12px 14px}td{padding:14px;border-bottom:1px solid #e7edef;vertical-align:middle}th:first-child,td:first-child{padding-left:24px}th:last-child,td:last-child{padding-right:24px}tbody tr:last-child td{border-bottom:0}.roster-table{min-width:1120px}tbody tr:hover td{background:#f7fafb}.name-cell{font-size:15px;font-weight:650;white-space:nowrap;letter-spacing:.02em}.subtext{display:block;font-size:11px;color:var(--muted);margin-top:2px}.class-tag{display:inline-block;background:#eff3f5;color:#5b6e7b;border:1px solid #e2e8eb;border-radius:5px;padding:2px 8px;font-size:11px;font-weight:600;white-space:nowrap}.sex-cell,.age-cell{white-space:nowrap;font-size:12px}.age-cell small{color:var(--muted);font-size:10px;margin-left:3px}.grade-select{min-width:77px;padding:7px 9px;background:#fff;border-color:#b5cbd1;font-weight:650;font-size:14px;cursor:pointer}.grade-cell{background:#f9fbfc}.next-grade{white-space:nowrap;font-size:14px;font-weight:650}.grade-arrow{font-size:15px;color:#9bb1b9;margin-right:12px;font-weight:400}.stroke-tag{display:inline-block;font-size:10px;font-weight:750;line-height:1.5;color:#5c688b;background:#edf0f9;border-radius:4px;padding:2px 6px;margin-bottom:3px}.stroke-tag.BF{color:#8b692e;background:#fff3d9}.stroke-tag.BK{color:#316893;background:#e7f1fb}.stroke-tag.BR{color:#8b527c;background:#f8eaf4}.stroke-tag.FR{color:#33735d;background:#e9f5e9}.stroke-tag.IM{color:#75509c;background:#f2eafa}.stroke-name{display:block;font-size:12px;font-weight:500;white-space:nowrap;color:#405b6b}.distance-badge{display:inline-block;font-size:14px;line-height:1.4;font-weight:650;white-space:nowrap;padding:4px 7px;border:1px solid transparent;border-radius:5px}.distance-badge small{font-size:10px;margin-left:2px;font-weight:500}.distance-star{font-size:11px}.distance-100 td{background:#fffaf0}.distance-100 td:first-child{box-shadow:inset 3px 0 #d3a651}.distance-100:hover td{background:#fff4df}.hundred-badge{background:#ffe9ac;color:#7b4d08;border-color:#d4ad59}.time{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:21px;font-weight:650;color:#205292;letter-spacing:-.03em;white-space:nowrap}.time.warning{color:var(--warning)}.status-note{display:block;color:var(--muted);font-size:10px;max-width:140px;margin-top:3px}.flag{display:block;max-width:160px;border:1px solid #ecd9af;border-radius:4px;background:#fff4d9;color:var(--warning);font-size:10px;padding:4px 6px;text-align:left;line-height:1.4;margin-top:5px}.row-actions{display:flex;align-items:center;gap:10px;white-space:nowrap}.pass-button{background:var(--blue);color:white;border:1px solid var(--blue);border-radius:6px;padding:6px 11px;font-size:12px;font-weight:650;min-height:33px}.pass-button:hover{background:var(--blue-dark)}.pass-button:disabled{background:#b8c7cc;border-color:#b8c7cc}.edit-button{background:none;border:0;color:#617a89;border-radius:5px;font-size:11px;padding:5px 3px;white-space:nowrap}.edit-button:hover{color:var(--blue);text-decoration:underline}.table-footer{display:flex;justify-content:space-between;gap:20px;padding:13px 24px;border-top:1px solid var(--border);background:#fafcfd;font-size:10px;color:var(--muted)}.footnote{font-size:11px;color:var(--muted);margin:13px 0;line-height:1.9}.filter-notice{margin:0;padding:10px 24px;color:var(--warning);background:#fff4df;font-size:12px}.empty-state{text-align:center;padding:55px 20px;border-top:1px solid var(--border)}.empty-state h2{font-size:21px}.empty-state p{font-size:13px;color:var(--muted);line-height:1.9}.empty-state .small{font-size:11px;margin:16px 0 0}.empty-mark{background:var(--blue-pale);color:var(--blue);font-size:32px;border-radius:15px;width:64px;height:64px;margin:0 auto 20px}
+.notice{background:#e9f3f4;border-radius:8px;padding:15px 18px;font-size:13px;margin:20px 0}.danger{background:#fff0ee;color:#97423c}.danger-button{background:var(--danger);color:white}.danger-text{color:var(--danger)}.rule-controls{display:flex;align-items:center;gap:15px;margin:22px 0;font-size:13px}.rule-controls span{font-size:12px;color:var(--muted)}.rules-table{min-width:1000px;font-variant-numeric:tabular-nums}.rules-table td{white-space:nowrap}.guide-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:28px 0 20px}.guide-card{background:#fff;border:1px solid var(--border);border-radius:11px;padding:25px}.guide-card h2{font-size:17px;margin:12px 0}.guide-card p{color:var(--muted);font-size:13px;line-height:1.95}.step{font-size:11px;color:var(--blue);letter-spacing:.1em;font-weight:650}.storage-guide h2:not(:first-child){margin-top:26px}.undo-panel{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:space-between;gap:30px;z-index:80;border-radius:10px;box-shadow:0 7px 30px #17394830;background:#20416b;color:#fff;padding:15px 22px;font-size:13px;max-width:calc(100vw - 30px);min-width:350px}.undo-panel .text-button{color:#bbd8ff;white-space:nowrap}
+/* Forms */
+dialog{border:1px solid var(--border);border-radius:14px;padding:28px;width:610px;max-width:calc(100vw - 30px);max-height:92vh;overflow-y:auto;box-shadow:0 24px 90px #183a4430;color:var(--ink)}dialog::backdrop{background:#18374765;backdrop-filter:blur(2px)}.dialog-heading{display:flex;justify-content:space-between;gap:20px;margin-bottom:22px}.dialog-heading h2{font-size:22px;margin-bottom:7px}.dialog-heading .small{margin:0}.close-button{border:0;background:#eff4f5;color:var(--muted);border-radius:100%;font-size:23px;line-height:1;width:31px;height:31px;flex-shrink:0}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:19px}.form-grid label{font-size:13px;font-weight:600}.form-grid input,.form-grid select,.form-grid textarea{display:block;width:100%;font-weight:400;margin-top:6px}.form-grid .full{grid-column:1/-1}.required,.optional{font-size:10px;font-weight:400;margin-left:6px;color:var(--blue)}.optional{color:var(--muted)}.pupil-preview{background:var(--blue-pale);border-radius:8px;padding:15px 18px;margin-top:22px;font-size:12px;color:var(--blue-dark);line-height:1.9}.pupil-preview strong{font-size:17px;display:block}.dialog-actions{display:flex;justify-content:space-between;align-items:center;gap:15px;padding-top:22px;margin-top:22px;border-top:1px solid var(--border)}.dialog-actions>div{display:flex;gap:10px}.source-panel{background:#fffbf3;border:1px solid #ead7b6;border-radius:8px;margin-top:18px;padding:15px;font-size:12px;color:#81633c}.source-panel p{white-space:pre-line;margin:6px 0 10px}.source-panel label{display:flex;align-items:center;gap:7px}.form-error{font-size:12px;color:var(--danger);margin-top:14px}.toast{position:fixed;left:50%;bottom:94px;transform:translateX(-50%);z-index:100;max-width:90vw;background:#20416b;color:white;box-shadow:0 5px 20px #183a4420;border-radius:8px;padding:12px 22px;font-size:12px;pointer-events:none}fieldset{border:1px solid var(--border);border-radius:8px;padding:15px}fieldset legend{padding:0 6px;font-size:13px;font-weight:600}fieldset label{display:block;margin:8px 0 14px;font-size:14px}fieldset small{display:block;font-size:11px;color:var(--muted);padding-left:25px}#import-description{font-size:13px;overflow-wrap:anywhere}#import-impact{margin-top:15px}.class-manager-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid #e8edef}.class-manager-row input{min-width:0;flex:1;width:100px;font-size:14px;font-weight:650}.class-manager-row>span{min-width:30px;font-size:12px;color:var(--muted)}.class-manager-row .button{min-height:36px;font-size:12px;padding:6px 13px}.class-add-form{padding:22px 0 14px}.class-add-form label{font-size:12px;font-weight:600}.class-add-form>div{display:flex;gap:10px;margin-top:8px}.class-add-form input{flex:1;min-width:0}
+@media(max-width:1150px){.app-header{gap:20px;padding:12px 24px}.local-badge{display:none}.header-nav{gap:3px}.nav-item{padding:9px 11px;font-size:12px}main{padding:28px 24px 80px}.overview{gap:18px}.date-block>span{display:none}.overview-item{padding-left:18px}.class-tab{min-width:126px}.roster-table{min-width:1050px}th,td{padding-left:11px;padding-right:11px}.name-cell{font-size:14px}.time{font-size:19px}.stroke-name{font-size:11px}}
+@media(max-width:800px){.app-header{flex-wrap:wrap;gap:12px;padding:14px 20px 0}.brand{font-size:18px}.brand-mark{width:37px;height:37px}.header-nav{order:3;width:100%;gap:7px;padding:8px 0;justify-content:center}.header-actions{gap:5px}.header-actions .button{font-size:11px;min-height:35px;padding:7px 12px}.nav-item{flex:1;text-align:center}main{padding:23px 18px 80px}.overview{flex-wrap:wrap;gap:15px;padding:15px 18px}.date-block{flex:1 1 100%;border-bottom:1px solid var(--border);padding-bottom:13px}.date-block>span{display:inline}.overview-item{border:0;padding:0 12px 0 0}.review-filter{margin-left:auto}.class-tabs{gap:8px}.class-tab{flex:1;min-width:105px;padding:12px 14px;gap:15px;font-size:14px}.list-heading{padding:18px 18px 12px}.list-heading h2{font-size:17px}.search-box input{width:150px}.table-caption{padding:0 18px 14px;align-items:flex-start;flex-wrap:wrap;gap:9px}.table-tools{gap:16px}.table-footer{padding:12px 18px;flex-wrap:wrap;gap:4px}.guide-grid{gap:14px}.guide-card{padding:20px}}
+@media(max-width:550px){.brand{font-size:16px;gap:9px}.brand small{font-size:9px}.header-actions .button{padding:7px 9px;font-size:10px}.header-actions{gap:0}.app-header{padding:12px 14px 0}main{padding:23px 12px 80px}h1{font-size:27px}.page-heading{display:block;margin-bottom:17px}.page-actions{margin-top:16px;display:flex}.page-actions .button{flex:1;min-height:41px;font-size:12px}.subtitle{font-size:12px}.overview{padding:14px;margin-bottom:20px}.date-block{gap:10px}.date-block label{font-size:12px}.date-block input{font-size:14px;min-width:160px}.date-block>span{font-size:10px;width:100%}.overview-item strong{font-size:21px}.overview-item>span{font-size:10px}.class-tab{min-width:93px;font-size:13px;padding:10px 11px;gap:10px;flex:0 1 calc((100% - 16px)/3)}.class-tab small{font-size:16px}.section-label{font-size:11px}.class-section{margin-bottom:18px}.list-heading{display:block;padding:17px 15px 12px}.list-heading>div{margin-bottom:12px}.search-box{width:100%}.search-box input{width:100%;font-size:12px}.table-caption{padding:0 15px 13px}.table-tools{gap:12px;width:100%;justify-content:space-between}.sort-label{font-size:10px}.hundred-legend,.hundred-legend b{font-size:10px}.table-footer{font-size:10px}.footnote{font-size:10px}.guide-grid{grid-template-columns:1fr}.rule-controls{flex-wrap:wrap;gap:10px}.rule-controls span{font-size:11px}dialog{padding:22px 18px}.dialog-heading h2{font-size:20px}.form-grid{gap:14px}.form-grid label{font-size:12px}.form-grid input,.form-grid select{font-size:13px;padding:9px 8px}.dialog-actions{flex-wrap:wrap;gap:13px}.dialog-actions .button{font-size:12px;padding:9px 13px}.class-manager-row{gap:9px}.class-manager-row .button{padding:6px 9px}.undo-panel{min-width:0;width:calc(100vw - 24px);font-size:12px;padding:13px 15px;gap:12px}.undo-panel>span{max-width:75%}.toast{font-size:11px}.notice{font-size:12px}.empty-state{padding:40px 15px}.empty-state h2{font-size:18px}}
+/* 100m remains recognizable even when background graphics are disabled. */
+@page{size:A4 landscape;margin:10mm}
+@media print{
+  body{background:#fff;color:#000;font-size:10px}.app-header,.no-print,.view:not(#view-roster),.toast,dialog,.overview,.empty-state,.table-footer{display:none!important}.app-shell{display:block;min-height:0}main{padding:0;margin:0;max-width:none}.page-heading{margin-bottom:9px}.page-heading h1{font-size:20px;margin:0}.page-heading .subtitle,.eyebrow{display:none}.roster-panel{border:0;border-radius:0;box-shadow:none}.table-scroll{overflow:visible}.table-caption{padding:0 0 9px;color:#222;font-size:10px;flex-wrap:nowrap}.table-tools{gap:14px}.hundred-legend{color:#000}.hundred-legend b{border:1px solid #555;background:none!important;color:#000}.sort-label{font-size:9px}.roster-table{min-width:0;width:100%;font-size:10px}.roster-table th,.roster-table td{padding:6px 8px;border-bottom:1px solid #c8c8c8}.roster-table th{font-size:9px;background:#edf0f2!important;color:#222}.roster-table td:first-child,.roster-table th:first-child{padding-left:9px}.roster-table td:last-child,.roster-table th:last-child{padding-right:8px}.name-cell{font-size:11px;letter-spacing:0}.subtext{font-size:8px;color:#444}.sex-cell,.age-cell{font-size:10px}.age-cell small{color:#333;font-size:8px}.print-only{display:table-cell}.grade-print{display:inline}.grade-select{display:none}.grade-cell{background:transparent}.next-grade{font-size:11px}.grade-arrow{color:#555;margin-right:6px}.class-tag,.stroke-tag{background:none!important;border:0!important;color:#222!important;padding:0;font-size:9px}.stroke-name{font-size:9px;color:#222}.stroke-tag{margin:0}.distance-badge{font-size:11px;padding:3px 5px}.distance-badge small{font-size:9px}.distance-star{font-size:11px}.roster-table .distance-100 td{background:#fff1c9!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.roster-table .distance-100 td:first-child{box-shadow:none;border-left:3px solid #9b6c19}.roster-table .hundred-badge{color:#111;border:1.5px solid #333;background:transparent!important;font-weight:800}.time{font-size:15px;color:#111!important}.status-note{font-size:8px;color:#333}.flag{font-size:8px;border:1px solid #777;background:none}.result-cell{min-width:70px;border-left:1px solid #c8c8c8}.filter-notice{background:none;color:#000;padding:6px 0}.roster-table tr{break-inside:avoid}.roster-table thead{display:table-header-group}.footnote{font-size:8px}
+}
+/* Membership and retained records. */
+.nav-count{font-size:10px;background:#e5ebee;border-radius:10px;padding:1px 6px;margin-left:3px}.profile-status{font-size:11px;color:var(--blue);font-weight:600;margin-bottom:5px}.lifecycle-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}.lifecycle-panel{margin-top:18px;border:1px solid #cdddf4;border-radius:9px;padding:18px;background:#f4f8ff}.lifecycle-panel h3{font-size:16px;margin:0 0 8px}.lifecycle-panel label{display:block;font-size:12px;font-weight:600;margin:12px 0}.lifecycle-panel input,.lifecycle-panel select,.lifecycle-panel textarea{display:block;width:100%;margin-top:5px;font-size:13px;font-weight:400}.lifecycle-panel>div{display:flex;gap:9px;margin-top:15px}.history-section{margin-top:22px;border-top:1px solid var(--border);padding-top:17px}.history-section summary{cursor:pointer;font-size:14px;font-weight:600}.history-section summary span{font-size:10px;font-weight:400;color:var(--muted);margin-left:10px}.history-section ol{list-style:none;padding:0;margin:12px 0 0;max-height:300px;overflow-y:auto}.history-section li{padding:11px 12px;border-left:3px solid #bbd2f2;border-bottom:1px solid #edf1f2;margin:0 0 8px;font-size:12px;background:#f8faff}.history-section li>div{display:flex;align-items:center;justify-content:space-between;gap:12px}.history-section time{font-size:11px;color:var(--muted)}.history-section li p{margin:6px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}.history-section li>small{display:block;font-size:10px;color:var(--muted);margin-top:6px}.history-note{background:#edf4fe;padding:7px;border-radius:5px}.archive-table{min-width:780px}.archive-note{max-width:320px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;color:var(--muted)}.archive-table .button{font-size:12px;white-space:nowrap}.archive-table .name-cell{white-space:normal}.archive-table th{font-size:12px}
+@media(max-width:1050px){.app-header{flex-wrap:wrap;gap:12px;padding-bottom:0}.header-nav{order:3;width:100%;justify-content:center;padding:7px 0}.header-nav .nav-item{flex:1}.header-actions{margin-left:auto}}
+@media print{.history-section,.lifecycle-actions,.lifecycle-panel{display:none!important}}
+
+/* Optional measured times. */
+.record-button{border:1px solid #b9cee9;background:#f1f6ff;color:#2056a5;border-radius:6px;padding:6px 9px;font-size:11px;font-weight:600;min-height:33px}.record-button:hover{background:#e0ecff}.row-actions{gap:8px}.measured-inline{display:block;font-size:11px;color:#3f6597;margin-top:4px;font-variant-numeric:tabular-nums}.test-context{background:var(--blue-pale);border:1px solid #d5e4fa;border-radius:9px;padding:16px;margin:18px 0;color:var(--blue-dark);font-size:13px}.test-context strong{display:block;font-size:18px;margin-bottom:4px}.test-time-label{display:block;font-weight:600;font-size:13px}.test-time-label input{display:block;width:100%;font:600 28px ui-monospace,Consolas,monospace;letter-spacing:.04em;margin-top:8px;padding:13px 15px}.test-time-label small{display:block;margin:7px 0 18px;font-size:11px;font-weight:400;color:var(--muted)}.test-note-label{display:block;font-size:13px;font-weight:600}.test-note-label textarea{display:block;width:100%;margin:6px 0 18px;font-weight:400}.test-pass-label{display:flex;align-items:center;gap:8px;font-size:13px}.test-pass-hint{margin:6px 0 0 25px;font-size:11px;color:var(--muted)}.history-section .history-time{font:650 22px ui-monospace,Consolas,monospace;color:var(--blue-dark)}.test-recent{margin-top:18px;color:var(--muted);font-size:11px;white-space:pre-line}.test-dialog-actions{justify-content:flex-end}.test-dialog-actions .button{white-space:nowrap}@media print{.measured-inline{color:#222;font-size:8px}}
+/* Google account session and lesson planning */
+.auth-screen{min-height:100vh;display:grid;place-items:center;padding:32px;background:linear-gradient(145deg,#edf4ff,#f8fbff)}.auth-card{width:100%;max-width:430px;background:#fff;border:1px solid #d9e5f5;border-radius:22px;padding:38px;box-shadow:0 20px 70px #1f4f9010}.auth-logo{width:58px;height:58px;border-radius:16px;background:var(--blue);color:white;font-size:46px;line-height:1;text-align:center;margin-bottom:24px}.auth-card h1{font-size:29px}.auth-card .subtitle{margin-bottom:24px}.auth-card label{display:block;font-size:13px;font-weight:650;margin:17px 0}.auth-card input{display:block;width:100%;margin-top:7px}.auth-card .button{width:100%;margin-top:8px}.login-message{font-size:12px;color:#526e93;margin-top:20px}.auth-note{font-size:11px;color:var(--muted);margin-bottom:0}.busy-panel{position:fixed;inset:auto 20px 22px;z-index:1000;margin:auto;max-width:500px;padding:17px;text-align:center;border-radius:10px;background:#20416b;color:#fff;box-shadow:0 8px 30px #18345420}.signed-in-user{font-size:11px;color:var(--muted);max-width:100px;overflow:hidden;text-overflow:ellipsis}.sync-actions{display:flex;gap:10px;margin:15px 0}.app-header{flex-wrap:wrap;gap:14px;padding-top:15px;padding-bottom:0}.header-nav{order:3;width:100%;justify-content:center;padding:8px 0;border-top:1px solid #edf2f9}.header-nav .nav-item{flex:1}.header-actions{margin-left:auto}.birth-print{font-size:8px;color:#333;white-space:nowrap}
+.practice-workspace{display:grid;grid-template-columns:minmax(300px,.8fr) minmax(480px,1.6fr);gap:24px;align-items:start}.menu-library-panel,.lesson-editor{background:white;border:1px solid var(--border);border-radius:14px;padding:22px}.panel-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:15px}.panel-heading h2{margin:0}.menu-library-panel>input{width:100%;margin-bottom:10px}.menu-library{display:grid;gap:12px}.menu-card{border:1px solid #dce7f7;border-radius:10px;padding:16px;background:#fbfdff}.menu-card>div{display:flex;align-items:center;justify-content:space-between;color:#3867a8;font-size:12px}.menu-category{background:#eaf2ff;border-radius:4px;padding:2px 7px;font-size:10px}.menu-card h3{font-size:16px;margin:10px 0 5px}.menu-card p{font-size:12px;margin:5px 0;color:var(--muted)}.menu-card .menu-note{font-size:11px;white-space:pre-wrap;overflow-wrap:anywhere}.menu-card footer{display:flex;justify-content:space-between;align-items:center;margin-top:13px}.menu-card .button{min-height:33px;font-size:12px;padding:6px 15px}.lesson-load{display:flex;align-items:center;gap:16px;margin-bottom:20px}.lesson-load select{flex:1;min-width:0}.lesson-fields{gap:14px}.lesson-fields input{min-width:0}.lesson-budget{display:flex;align-items:center;gap:20px;flex-wrap:wrap;padding:17px;background:#eef5ff;border-radius:10px;margin:22px 0}.lesson-budget>div{display:flex;align-items:center;gap:12px}.lesson-budget>div>span{font-size:12px;color:var(--muted)}.lesson-budget>div>strong{font-size:24px;color:var(--blue-dark)}#lesson-remaining{font-size:15px;color:var(--blue)}#lesson-remaining.over-time{color:var(--danger)}#lesson-distance{margin-left:auto;font-size:13px;color:var(--muted)}.lesson-budget progress{width:100%;height:9px;accent-color:var(--blue)}.lesson-items{list-style:none;padding:0;margin:0}.lesson-item{display:flex;gap:14px;align-items:flex-start;border-bottom:1px solid #e3eaf4;padding:17px 0}.item-time{font:650 13px ui-monospace,monospace;color:var(--blue);min-width:65px}.item-time>span{display:block;color:var(--muted);font-size:11px;margin-top:4px}.item-main{flex:1;min-width:0}.item-main>strong{display:block;font-size:15px}.item-main>span{font-size:12px;color:var(--muted);display:block}.item-main label{display:block;font-size:11px;margin-top:8px}.item-main input{width:80px;padding:5px 8px;font-size:12px}.item-main p{font-size:11px;color:var(--muted);margin:9px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}.item-actions{display:flex;gap:10px}.item-actions .text-button{font-size:12px}.lesson-empty{text-align:center;padding:35px 15px;color:var(--muted);font-size:13px;border:1px dashed #c2d5f0;border-radius:10px}.lesson-note-label{display:block;font-size:12px;font-weight:600;margin-top:22px}.lesson-note-label textarea{width:100%;display:block;margin-top:6px;font-weight:400}.lesson-save{border-top:1px solid var(--border);padding-top:17px;margin-top:18px}.lesson-save>div{display:flex;justify-content:flex-end;gap:10px;margin-top:12px}.lesson-save .button{font-size:12px}.lesson-preview-dialog{width:860px}.lesson-preview-content h1{font-size:26px}.lesson-preview-content>p{font-size:13px;color:var(--muted)}.preview-metrics{background:#edf4ff;border-radius:8px;padding:14px;font-size:13px;color:var(--blue-dark)}.lesson-preview-content ol{list-style:none;margin:20px 0;padding:0}.lesson-preview-content li{display:flex;gap:22px;padding:17px 0;border-bottom:1px solid var(--border);break-inside:avoid}.lesson-preview-content time{font:600 12px ui-monospace,monospace;min-width:130px;color:var(--blue)}.lesson-preview-content li strong{font-size:17px}.lesson-preview-content li p{font-size:12px;white-space:pre-wrap;margin:5px 0;overflow-wrap:anywhere}.preview-note{white-space:pre-wrap;background:#f4f7fb;padding:15px;border-radius:8px}
+@media(max-width:1000px){.practice-workspace{grid-template-columns:1fr}.menu-library{grid-template-columns:repeat(2,minmax(0,1fr))}.signed-in-user,.local-badge{display:none}}@media(max-width:600px){.auth-screen{padding:16px}.auth-card{padding:28px 24px}.header-actions{flex-wrap:wrap;justify-content:flex-end;gap:7px}.header-nav{overflow:auto;justify-content:flex-start}.header-nav .nav-item{flex:0 0 auto}.menu-library-panel,.lesson-editor{padding:16px}.menu-library{grid-template-columns:1fr 1fr;gap:9px}.menu-card{padding:12px}.menu-card h3{font-size:14px}.menu-card .menu-note{display:none}.lesson-budget{gap:12px}.item-actions{flex-direction:column;gap:0}.lesson-save>div{flex-wrap:wrap}.lesson-preview-content li{display:block}.lesson-preview-content time{display:block;margin-bottom:8px}.lesson-preview-content li strong{font-size:16px}}
+@media print{.auth-screen,.busy-panel,.sync-actions{display:none!important}.birth-print.print-only{display:block}.birth-heading.print-only{display:inline}.printing-lesson>.app-shell,.printing-lesson>.app-header{display:none!important}body.printing-lesson #lesson-preview-dialog{display:block!important;position:static;width:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;box-shadow:none;overflow:visible}.printing-lesson #lesson-preview-dialog::backdrop{display:none}.lesson-preview-content h1{font-size:22px}.lesson-preview-content li strong{font-size:14px}.lesson-preview-content li{padding:10px 0}.lesson-preview-content time{color:#000}.preview-metrics{background:none;border:1px solid #aaa;color:#000}}
+</style>
+</head>
+<body>
+<noscript>このアプリを使うには、ブラウザでJavaScriptを有効にしてください。</noscript>
+<section id="auth-screen" class="auth-screen" aria-labelledby="login-heading">
+  <div class="auth-card"><div class="auth-logo">≋</div><p class="eyebrow">SWIM NOTE</p><h1 id="login-heading">スイムノート</h1><p class="subtitle">テストの記録と、次のレッスンをひとつに。</p>
+  <form id="login-form"><label>ID<input id="login-id" autocomplete="username" required maxlength="100"></label><label>パスワード<input id="login-password" type="password" autocomplete="current-password" required maxlength="256"></label><button id="login-button" class="button primary" type="submit">ログイン</button></form>
+  <p id="login-message" class="login-message" role="status">IDとパスワードでログインしてください。</p><p class="auth-note">10分間操作がない場合は自動ログアウトします。</p></div>
+</section>
+<div id="busy-panel" class="busy-panel" role="status" hidden>Googleスプレッドシートに保存しています…</div>
+
+<header class="app-header" hidden>
+  <a class="brand" href="#roster" aria-label="スイムノート ホーム"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M7 15q6 6 13 0t13 0M7 25q6 6 13 0t13 0"/></svg></span><span>スイムノート<small>進級テスト管理</small></span></a>
+  <nav class="header-nav" aria-label="メインメニュー"><button class="nav-item active" data-view="roster">テスト名簿</button><button class="nav-item" data-view="practice">練習メニュー</button><button class="nav-item" data-view="archive">退会した子 <span id="archive-count" class="nav-count">0</span></button><button class="nav-item" data-view="rules">進級基準表</button><button class="nav-item" data-view="help">使い方</button></nav>
+  <div class="header-actions"><span class="local-badge"><span></span>Google保存</span><button id="import-button" class="button quiet">データを開く</button><button id="backup-button" class="button secondary">↓ バックアップ</button><span id="signed-in-user" class="signed-in-user"></span><button id="logout-button" class="text-button">ログアウト</button></div>
+</header>
+<div class="app-shell" hidden>
+  <main>
+    <div id="storage-alert" class="notice danger" role="alert" hidden></div><div id="sync-actions" class="sync-actions" hidden><button id="retry-save" class="button primary">保存を再試行</button><button id="refresh-data" class="button secondary">最新を取得</button></div>
+    <section id="view-roster" class="view" aria-labelledby="roster-heading">
+      <div class="page-heading"><div><h1 id="roster-heading">テスト名簿</h1></div><div class="page-actions no-print"><button id="add-button" class="button secondary">＋ 子どもを追加</button><button id="print-button" class="button primary"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V3h10v5M7 17H4V9h16v8h-3M7 14h10v7H7zM17 11h1"/></svg>名簿を印刷</button></div></div>
+      <div class="overview">
+        <div class="date-block"><label for="test-date">次回のテスト日</label><input id="test-date" type="date" min="1900-01-01" max="2200-12-31" required><span>この日の満年齢で判定</span></div>
+        <div class="overview-item"><strong id="total-count">0<small>人</small></strong><span>登録済み</span></div>
+        <div class="overview-item"><strong id="class-count">0<small>クラス</small></strong></div>
+        <button id="review-filter" class="overview-item review-filter" aria-pressed="false"><span>要確認</span><strong id="review-count">0<small>人</small></strong></button>
+      </div>
+      <div class="class-section no-print"><div class="section-label"><span>クラスを選択</span><button id="manage-classes" class="text-button">＋ クラス管理</button></div><div id="class-tabs" class="class-tabs" role="group" aria-label="クラスで絞り込み"></div></div>
+      <div class="roster-panel">
+        <div class="list-heading no-print"><div><h2 id="list-heading">すべてのテスト名簿</h2><span id="list-count">0人</span></div><label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><input id="search" type="search" placeholder="名前・クラスを検索" aria-label="名前・クラスを検索"></label></div>
+        <div class="table-caption"><span id="table-description">名簿を登録してください</span><div class="table-tools"><span class="hundred-legend"><b>★ 100m</b> <span id="hundred-count">0</span>人</span><span class="sort-label">級が高い順 ↓</span><button id="csv-button" class="text-button no-print">CSV出力</button></div></div>
+        <p id="filter-notice" class="filter-notice" hidden></p>
+        <div id="empty-state" class="empty-state"><div class="empty-mark" aria-hidden="true">▦</div><h2 id="empty-heading">最初の名簿を登録しましょう</h2><p id="empty-copy">以前のアプリのバックアップJSONを開くか、子どもを追加してください。</p><button id="empty-import" class="button primary">名簿データを開く</button><p class="small">「子どもを追加」から、1人ずつ登録することもできます。</p></div>
+        <div id="table-container" class="table-scroll" hidden><table class="roster-table"><thead><tr><th scope="col">氏名 / 学年<span class="print-only birth-heading"> / 生年月日</span></th><th scope="col">クラス</th><th scope="col">性別</th><th scope="col">年齢</th><th scope="col">合格済みの級</th><th scope="col">次の受験級</th><th scope="col">テスト種目</th><th scope="col">距離</th><th scope="col">規定タイム</th><th scope="col" class="no-print">合格 / タイム / 編集</th><th scope="col" class="print-only">結果</th></tr></thead><tbody id="roster-body"></tbody></table></div>
+        <div id="no-results" class="empty-state" hidden><h2>条件に合う子どもがいません</h2><p>検索文字やクラスの絞り込みを変更してください。</p><button id="clear-filters" class="button secondary">絞り込みを解除</button></div>
+        <div class="table-footer"><span>「合格」で1段階進級。「タイム」で実測を記録できます（任意）。</span><span id="save-status" role="status">まだ名簿は登録されていません</span></div>
+      </div>
+      <p class="footnote no-print">★ 100mの行は印刷でも目印付き。タイムは「分:秒.小数」、タイム規定なしは「—」で表示します。</p>
+      <div id="undo-panel" class="undo-panel no-print" hidden><span id="undo-text"></span><button id="undo-button" class="text-button">元に戻す</button></div>
+    </section>
+    <section id="view-practice" class="view" hidden aria-labelledby="practice-heading">
+  <div class="page-heading"><div><h1 id="practice-heading">練習メニュー</h1><p class="subtitle">いつもの練習を選んで、レッスンの時間に合わせる。</p></div><div class="page-actions"><button id="new-lesson" class="button secondary">新しいレッスン</button><button id="preview-lesson" class="button primary">プレビュー</button></div></div>
+  <div class="practice-workspace"><aside class="menu-library-panel"><div class="panel-heading"><h2>練習カード</h2><button id="create-menu-card" class="text-button">＋ カードを作成</button></div><input id="menu-search" type="search" placeholder="カードを検索" aria-label="練習カードを検索"><p class="small">所要時間には説明・休憩も含めて設定してください。</p><div id="menu-library" class="menu-library"></div></aside>
+  <section class="lesson-editor"><div class="lesson-load"><select id="lesson-list" aria-label="保存したレッスン"><option value="">保存したレッスン</option></select><button id="delete-lesson" class="text-button danger-text">削除</button></div>
+  <div class="form-grid lesson-fields"><label class="full">レッスン名<input id="lesson-title" maxlength="100"></label><label>実施日<input id="lesson-date" type="date"></label><label>クラス<input id="lesson-group" list="group-options" maxlength="50" placeholder="例：J2"></label><label>開始時刻<input id="lesson-start" type="time"></label><label>レッスン時間（分）<input id="lesson-minutes" type="number" min="5" max="240" step="1"></label></div>
+  <div class="lesson-budget"><div><span>練習の合計</span><strong id="lesson-used">0分</strong></div><strong id="lesson-remaining">残り60分</strong><span id="lesson-distance">0m</span><progress id="lesson-meter" max="3600" value="0"></progress></div>
+  <ol id="lesson-items" class="lesson-items"></ol><label class="lesson-note-label">レッスン全体のメモ<textarea id="lesson-note" rows="2" maxlength="2000"></textarea></label>
+  <div class="lesson-save"><span id="lesson-dirty" class="small"></span><div><button id="copy-lesson" class="button secondary">別のレッスンとして保存</button><button id="save-lesson" class="button primary">保存する</button></div></div></section></div>
+</section>
+
+    <section id="view-archive" class="view" hidden aria-labelledby="archive-heading"><div class="page-heading"><div><h1 id="archive-heading">退会した子</h1><p id="archive-summary" class="subtitle"></p></div><label class="search-box"><input id="archive-search" type="search" placeholder="名前・最終クラスを検索" aria-label="退会した子を検索"></label></div><p class="notice">退会前の情報と操作履歴を保管しています。再入会するときは「記録・再入会」からクラスを選んでください。</p><div class="roster-panel"><div id="archive-empty" class="empty-state"><h2>該当する記録はありません</h2><p>退会の手続きをした子どもがここに表示されます。</p></div><div id="archive-table" class="table-scroll" hidden><table class="archive-table"><thead><tr><th>氏名</th><th>最終クラス</th><th>合格級</th><th>退会日</th><th>退会時のメモ</th><th>操作</th></tr></thead><tbody id="archive-body"></tbody></table></div></div></section>
+    <section id="view-rules" class="view" hidden aria-labelledby="rules-heading">
+      <p class="eyebrow">TEST STANDARDS</p><h1 id="rules-heading">進級基準表</h1><p class="subtitle">合格級のひとつ先が、次の受験級です。</p>
+      <div class="notice">7級 → 6級は個人メドレー100m・タイム規定なし。6級 → 5級 → … → 1級 → 1段 → … → 10段の順に進みます。</div>
+      <div class="rule-controls no-print"><label for="rule-sex">基準表</label><select id="rule-sex"><option value="male">男子</option><option value="female">女子</option></select><span>タイムの年齢はテスト当日の満年齢</span></div>
+      <div class="roster-panel table-scroll"><table class="rules-table"><thead><tr><th>受験級</th><th>種目</th><th>距離</th><th>8歳</th><th>9歳</th><th>10歳</th><th>11歳</th><th>12歳</th><th>13〜14歳</th><th>15歳以上</th></tr></thead><tbody id="rules-body"></tbody></table></div>
+      <p class="footnote">出典：D5.xlsx・D7.xlsx・J.xlsx のPreferenceシート（3冊の規定タイムは一致）。8歳未満のタイム基準、7級より前の級、10段合格後の基準は資料にないため、自動補完しません。</p>
+    </section>
+    <section id="view-help" class="view" hidden aria-labelledby="help-heading">
+      <p class="eyebrow">GUIDE & DATA</p><h1 id="help-heading">使い方・データ管理</h1><p class="subtitle">開いて、更新して、次回のテストへ。</p>
+      <div class="guide-grid"><article class="guide-card"><span class="step">01</span><h2>最初に名簿を開く</h2><p>「データを開く」で以前のアプリのバックアップJSONを選びます。Googleスプレッドシートへ名簿と履歴を移せます。</p><button id="help-import" class="button secondary">データを開く</button></article>
+      <article class="guide-card"><span class="step">02</span><h2>合格したら、ボタンひとつ</h2><p>テスト日を指定し、最後に合格した級を選びます。「合格」を押すと1段階進級し、次回の種目・距離・タイムが更新されます。タイムも残す場合は「タイム」から実測を入力します。記録だけの保存や、記録と同時に合格にする操作もできます。直前の合格は「元に戻す」で取り消せます。一覧は上位の級・段から自動で並びます。</p></article>
+      <article class="guide-card"><span class="step">03</span><h2>移動・退会・再入会を記録</h2><p>「編集」から日付・メモを付けてクラス移動や退会を記録できます。退会後も合格級や履歴を保管し、「退会した子」から再入会できます。「クラス管理」ではクラスの追加・名称変更・空のクラスの削除ができます。</p></article>
+      <article class="guide-card"><span class="step">04</span><h2>履歴ごとバックアップ</h2><p>実測タイム・合格・級の修正・クラス移動・退会・再入会は、子どもごとの操作履歴に残ります。バックアップJSONには退会した子と履歴も含まれます。CSVには表示中の受験級とテスト日に一致する最新の実測タイムも含まれます。復元にはJSONを使ってください。</p><button id="help-backup" class="button secondary">バックアップ保存</button></article></div>
+      <div class="guide-card storage-guide"><h2>Googleへの保存とログイン</h2><p>名簿・履歴・練習カード・レッスンはGoogleスプレッドシートに保存します。インターネット接続が必要です。保存中は画面に表示し、通信が失敗した場合は再試行できます。別のPCの変更と重なったときは、上書きせず最新のデータを確認します。</p><p>10分間操作がないと自動ログアウトします。タブを閉じた後や画面更新後も再ログインしてください。ログアウト時には個人情報と未保存の入力を画面から消します。</p><h2>以前の名簿を移す</h2><p>以前のアプリでバックアップJSONを保存し、「データを開く」から選んで反映します。初期データやバックアップJSONをGitHubへアップロードする必要はありません。</p><h2>練習メニュー</h2><p>カードを作り、必要な順に追加します。項目ごとの予定時間・順序を調整すると、合計・残り時間・距離と開始／終了時刻が更新されます。上限を超えているレッスンは保存前に時間を調整してください。「プレビュー」からメニューの確認・印刷ができます。</p><p>カードの変更・削除は、作成済みのレッスンには反映しません。レッスンは保存時の内容を保持します。</p><h2>バックアップ</h2><p>JSONには退会した子・全履歴・練習カード・レッスンも含まれます。保存先はスクールで管理してください。学年は通常の4月2日〜翌年4月1日の区切りで計算します。</p></div>
+    </section>
+  </main>
+</div>
+<input id="import-file" type="file" accept=".json,application/json" hidden>
+<datalist id="group-options"></datalist>
+<dialog id="test-dialog" aria-labelledby="test-dialog-title">
+  <form id="test-form">
+    <div class="dialog-heading"><div><p id="test-pupil-name" class="profile-status"></p><h2 id="test-dialog-title">実測タイムを記録</h2><p class="small">テストの記録を、次の練習へ。</p></div><button type="button" data-close="test-dialog" class="close-button" aria-label="閉じる">×</button></div>
+    <div class="form-grid"><label>テスト日<input id="record-date" type="date" min="1900-01-01" max="2200-12-31" required></label><label>受験級<select id="record-grade" required></select></label></div>
+    <div id="test-context" class="test-context" aria-live="polite"></div>
+    <label class="test-time-label">実測タイム<input id="record-time" type="text" inputmode="text" maxlength="12" placeholder="1:23.45" autocomplete="off" required aria-describedby="record-time-help"><small id="record-time-help">分:秒（1:23.45）または秒（83.45）で入力。小数は2桁まで。</small></label>
+    <label class="test-note-label">メモ（任意）<textarea id="record-note" rows="2" maxlength="1000" placeholder="泳ぎの様子・次回に向けたメモなど"></textarea></label>
+    <label class="test-pass-label"><input id="record-pass" type="checkbox"><span id="record-pass-label">この記録で合格にする</span></label><p id="record-pass-hint" class="test-pass-hint"></p>
+    <p id="test-recent" class="test-recent"></p><p id="test-error" class="form-error" role="alert" hidden></p>
+    <div class="dialog-actions test-dialog-actions"><button type="button" data-close="test-dialog" class="button secondary">キャンセル</button><button type="submit" id="save-test" class="button primary">タイムを保存する</button></div>
+  </form>
+</dialog>
+<dialog id="class-dialog" aria-labelledby="class-dialog-title"><div class="dialog-heading"><div><h2 id="class-dialog-title">クラス管理</h2><p class="small">クラス名を変更すると、在籍する子どもにも反映されます。</p></div><button type="button" data-close="class-dialog" class="close-button" aria-label="閉じる">×</button></div><div id="class-list"></div><form id="class-form" class="class-add-form"><label for="class-name">新しいクラス</label><div><input id="class-name" placeholder="例：J3" maxlength="50" required autocomplete="off"><button class="button primary" type="submit">＋ 追加</button></div></form><p id="class-error" class="form-error" role="alert" hidden></p><p class="small">在籍中の子どもがいるクラスは、子どもを移動すると削除できます。</p><div class="dialog-actions"><span></span><button type="button" data-close="class-dialog" class="button secondary">閉じる</button></div></dialog>
+<dialog id="pupil-dialog" aria-labelledby="pupil-dialog-title">
+  <form id="pupil-form">
+    <div class="dialog-heading"><div><p id="pupil-status" class="profile-status">新規登録</p><h2 id="pupil-dialog-title">子どもを追加</h2></div><button type="button" data-close="pupil-dialog" class="close-button" aria-label="閉じる">×</button></div>
+    <input id="pupil-id" type="hidden">
+    <div class="form-grid"><label class="full">氏名 <span class="required">必須</span><input id="pupil-name" required maxlength="100" autocomplete="off" placeholder="氏名を入力"></label><label>生年月日 <span class="required">必須</span><input id="pupil-birth" type="date" required min="1900-01-01" max="2200-12-31"></label><label>性別 <span class="required">必須</span><select id="pupil-sex" required><option value="">選択してください</option><option value="male">男</option><option value="female">女</option></select></label><label>所属クラス <span class="required">必須</span><input id="pupil-group" list="group-options" required maxlength="50" autocomplete="off" placeholder="例：D5"></label><label>合格級 <span class="required">必須</span><select id="pupil-grade" required></select></label><label class="full">メモ <span class="optional">任意</span><textarea id="pupil-note" rows="2" maxlength="1000" placeholder="指導上の申し送りなど"></textarea></label></div>
+    <div id="pupil-preview" class="pupil-preview" aria-live="polite"></div>
+    <div id="lifecycle-actions" class="lifecycle-actions" hidden><button id="transfer-button" type="button" class="button secondary">クラス移動</button><button id="withdraw-button" type="button" class="button quiet danger-text">退会として保管</button><button id="rejoin-button" type="button" class="button primary" hidden>再入会する</button></div>
+    <section id="lifecycle-panel" class="lifecycle-panel" hidden><h3 id="lifecycle-title"></h3><p id="lifecycle-description" class="small"></p><label id="lifecycle-class-label">移動先・再入会先のクラス<select id="lifecycle-class"></select></label><label>手続き日<input id="lifecycle-date" type="date" min="1900-01-01"></label><label>メモ（任意）<textarea id="lifecycle-note" rows="2" maxlength="1000" placeholder="移動や退会の理由・申し送りなど"></textarea></label><div><button id="lifecycle-confirm" type="button" class="button primary">確定する</button><button id="lifecycle-cancel" type="button" class="button secondary">キャンセル</button></div></section>
+    <details id="history-section" class="history-section" hidden open><summary>操作履歴 <span>新しい記録から表示</span></summary><ol id="history-list"></ol></details>
+    <div id="source-panel" class="source-panel" hidden><strong>元の一覧表の記録</strong><p id="source-detail"></p><label id="source-review-label"><input id="source-reviewed" type="checkbox">元表との相違を確認済み</label></div>
+    <p id="form-error" class="form-error" role="alert" hidden></p>
+    <div id="profile-actions" class="dialog-actions"><span></span><div><button type="button" data-close="pupil-dialog" class="button secondary">キャンセル</button><button type="submit" class="button primary">保存する</button></div></div>
+  </form>
+</dialog>
+<dialog id="import-dialog" aria-labelledby="import-title"><div class="dialog-heading"><div><p class="eyebrow">IMPORT DATA</p><h2 id="import-title">名簿を開く</h2></div><button type="button" data-close="import-dialog" class="close-button" aria-label="閉じる">×</button></div><p id="import-description"></p><p id="import-groups" class="notice"></p><fieldset id="import-mode"><legend>今の名簿への反映方法</legend><label><input type="radio" name="import-mode" value="merge" checked>追加・更新する <small>同じIDの登録情報・在籍状態を更新し、履歴は両方を保管します。</small></label><label><input type="radio" name="import-mode" value="replace">名簿全体を入れ替える <small>退会した子・履歴も含め、ファイルの内容で置き換えます。</small></label></fieldset><p id="import-impact" class="small"></p><p id="import-error" class="form-error" role="alert" hidden></p><div class="dialog-actions"><span></span><div><button type="button" data-close="import-dialog" class="button secondary">キャンセル</button><button id="confirm-import" class="button primary">反映する</button></div></div></dialog>
+<dialog id="menu-card-dialog" aria-labelledby="menu-card-heading"><form id="menu-card-form"><div class="dialog-heading"><h2 id="menu-card-heading">練習カードを編集</h2><button type="button" data-close="menu-card-dialog" class="close-button" aria-label="閉じる">×</button></div><div class="form-grid"><label class="full">メニュー名<input id="card-title" required maxlength="100" placeholder="例：キック 25m × 4本"></label><label>分類<input id="card-category" maxlength="40" placeholder="基礎・技術・メインなど"></label><label>所要時間（分）<input id="card-minutes" type="number" min="0.5" max="240" step="0.5" required></label><label>1本の距離（m）<input id="card-distance" type="number" min="0" max="10000" step="1" required></label><label>本数<input id="card-reps" type="number" min="1" max="200" step="1" required></label><label class="full">説明・注意点<textarea id="card-note" rows="3" maxlength="1000"></textarea></label></div><p class="small">距離がない練習は0m。所要時間には説明・休憩を含めてください。</p><p id="menu-card-error" class="form-error" hidden></p><div class="dialog-actions"><button id="delete-menu-card" type="button" class="text-button danger-text" hidden>カードを削除</button><div><button type="button" data-close="menu-card-dialog" class="button secondary">キャンセル</button><button class="button primary" type="submit">カードを保存</button></div></div></form></dialog>
+<dialog id="lesson-preview-dialog" class="lesson-preview-dialog" aria-label="レッスンのプレビュー"><div class="dialog-heading no-print"><h2>レッスンのプレビュー</h2><button type="button" data-close="lesson-preview-dialog" class="close-button" aria-label="閉じる">×</button></div><div id="lesson-preview-content" class="lesson-preview-content"></div><div class="dialog-actions no-print"><button type="button" data-close="lesson-preview-dialog" class="button secondary">閉じる</button><button id="print-lesson" class="button primary">メニューを印刷</button></div></dialog>
+
+<div id="toast" class="toast" role="status" hidden></div>
+<script id="rule-data" type="application/json">[
+  {
+    "grade": "5",
+    "stroke": "BF",
+    "distance": 50,
+    "male": [
+      80.0,
+      75.0,
+      70.0,
+      70.0,
+      70.0,
+      65.0,
+      65.0
+    ],
+    "female": [
+      80.0,
+      75.0,
+      70.0,
+      70.0,
+      70.0,
+      65.0,
+      65.0
+    ]
+  },
+  {
+    "grade": "4",
+    "stroke": "BK",
+    "distance": 50,
+    "male": [
+      75.0,
+      70.0,
+      65.0,
+      65.0,
+      65.0,
+      60.0,
+      60.0
+    ],
+    "female": [
+      75.0,
+      70.0,
+      65.0,
+      65.0,
+      65.0,
+      60.0,
+      60.0
+    ]
+  },
+  {
+    "grade": "3",
+    "stroke": "BR",
+    "distance": 50,
+    "male": [
+      80.0,
+      75.0,
+      70.0,
+      70.0,
+      70.0,
+      65.0,
+      65.0
+    ],
+    "female": [
+      80.0,
+      75.0,
+      70.0,
+      70.0,
+      70.0,
+      65.0,
+      65.0
+    ]
+  },
+  {
+    "grade": "2",
+    "stroke": "FR",
+    "distance": 50,
+    "male": [
+      70.0,
+      65.0,
+      60.0,
+      60.0,
+      60.0,
+      55.0,
+      55.0
+    ],
+    "female": [
+      70.0,
+      65.0,
+      60.0,
+      60.0,
+      60.0,
+      55.0,
+      55.0
+    ]
+  },
+  {
+    "grade": "1",
+    "stroke": "IM",
+    "distance": 100,
+    "male": [
+      150.0,
+      145.0,
+      140.0,
+      135.0,
+      130.0,
+      125.0,
+      120.0
+    ],
+    "female": [
+      150.0,
+      145.0,
+      140.0,
+      135.0,
+      130.0,
+      125.0,
+      120.0
+    ]
+  },
+  {
+    "grade": "A1",
+    "stroke": "BF",
+    "distance": 50,
+    "male": [
+      65.0,
+      63.0,
+      60.0,
+      57.0,
+      55.0,
+      53.0,
+      52.0
+    ],
+    "female": [
+      65.0,
+      63.0,
+      60.0,
+      58.0,
+      56.0,
+      54.0,
+      53.0
+    ]
+  },
+  {
+    "grade": "A2",
+    "stroke": "BK",
+    "distance": 50,
+    "male": [
+      60.0,
+      59.0,
+      58.0,
+      55.0,
+      53.0,
+      51.0,
+      50.0
+    ],
+    "female": [
+      60.0,
+      59.0,
+      58.0,
+      56.0,
+      54.0,
+      52.0,
+      51.0
+    ]
+  },
+  {
+    "grade": "A3",
+    "stroke": "BR",
+    "distance": 50,
+    "male": [
+      65.0,
+      63.0,
+      61.0,
+      59.0,
+      57.0,
+      55.0,
+      54.0
+    ],
+    "female": [
+      65.0,
+      63.0,
+      61.0,
+      60.0,
+      58.0,
+      56.0,
+      55.0
+    ]
+  },
+  {
+    "grade": "A4",
+    "stroke": "FR",
+    "distance": 50,
+    "male": [
+      49.0,
+      47.0,
+      46.0,
+      44.0,
+      43.0,
+      41.0,
+      40.0
+    ],
+    "female": [
+      49.0,
+      47.0,
+      46.0,
+      45.0,
+      44.0,
+      42.0,
+      41.0
+    ]
+  },
+  {
+    "grade": "A5",
+    "stroke": "IM",
+    "distance": 100,
+    "male": [
+      124.0,
+      120.0,
+      115.0,
+      112.0,
+      108.0,
+      104.0,
+      102.0
+    ],
+    "female": [
+      124.0,
+      120.0,
+      115.0,
+      112.0,
+      110.0,
+      106.0,
+      104.0
+    ]
+  },
+  {
+    "grade": "A6",
+    "stroke": "FR",
+    "distance": 100,
+    "male": [
+      104.0,
+      100.0,
+      98.0,
+      94.0,
+      92.0,
+      88.0,
+      86.0
+    ],
+    "female": [
+      104.0,
+      100.0,
+      98.0,
+      96.0,
+      94.0,
+      90.0,
+      88.0
+    ]
+  },
+  {
+    "grade": "A7",
+    "stroke": "Fly/Back",
+    "distance": 100,
+    "male": [
+      125.0,
+      122.0,
+      118.0,
+      112.0,
+      108.0,
+      104.0,
+      102.0
+    ],
+    "female": [
+      125.0,
+      122.0,
+      118.0,
+      114.0,
+      110.0,
+      106.0,
+      104.0
+    ]
+  },
+  {
+    "grade": "A8",
+    "stroke": "Breast/Free",
+    "distance": 100,
+    "male": [
+      114.0,
+      110.0,
+      107.0,
+      103.0,
+      100.0,
+      96.0,
+      94.0
+    ],
+    "female": [
+      114.0,
+      110.0,
+      107.0,
+      105.0,
+      102.0,
+      98.0,
+      96.0
+    ]
+  },
+  {
+    "grade": "A9",
+    "stroke": "FR",
+    "distance": 200,
+    "male": [
+      220.0,
+      212.0,
+      208.0,
+      200.0,
+      196.0,
+      188.0,
+      184.0
+    ],
+    "female": [
+      220.0,
+      212.0,
+      208.0,
+      204.0,
+      200.0,
+      192.0,
+      188.0
+    ]
+  },
+  {
+    "grade": "A10",
+    "stroke": "IM",
+    "distance": 200,
+    "male": [
+      255.0,
+      248.0,
+      241.0,
+      231.0,
+      224.0,
+      216.0,
+      212.0
+    ],
+    "female": [
+      255.0,
+      248.0,
+      241.0,
+      235.0,
+      228.0,
+      220.0,
+      216.0
+    ]
+  }
+]
+</script>
+<script id="cloud-config" type="application/json">{"apiUrl":"","siteUrl":"https://ryu-mei-15.github.io/SwimingJob/"}</script>
+<script>(function(root){
+  'use strict';
+  const text=(v,max,label)=>{if(typeof v!=='string'||v.length>max)throw new Error(label+'を確認してください。');return v.trim();};
+  const number=(v,min,max,label)=>{if(!Number.isInteger(v)||v<min||v>max)throw new Error(label+'を確認してください。');return v;};
+  function item(raw){
+    if(!raw||typeof raw!=='object')throw new Error('練習メニューの形式が正しくありません。');
+    const value={id:text(raw.id,100,'メニューID'),title:text(raw.title,100,'メニュー名'),category:text(raw.category||'練習',40,'分類'),seconds:number(raw.seconds,30,14400,'所要時間'),distance:number(raw.distance??0,0,10000,'距離'),reps:number(raw.reps??1,1,200,'本数'),note:text(raw.note||'',1000,'メニューのメモ')};
+    if(!value.id||!value.title)throw new Error('メニュー名を入力してください。');
+    return value;
+  }
+  function lesson(raw){
+    if(!raw||typeof raw!=='object'||!Array.isArray(raw.items)||raw.items.length>100)throw new Error('レッスンの形式が正しくありません。');
+    if(!/^\d{4}-\d{2}-\d{2}$/.test(raw.date)||new Date(raw.date+'T00:00:00Z').toISOString().slice(0,10)!==raw.date)throw new Error('レッスン日を確認してください。');
+    if(!/^([01]\d|2[0-3]):[0-5]\d$/.test(raw.start))throw new Error('開始時刻を確認してください。');
+    const value={id:text(raw.id,100,'レッスンID'),title:text(raw.title,100,'レッスン名'),date:raw.date,start:raw.start,group:text(raw.group||'',50,'クラス'),minutes:number(raw.minutes,5,240,'レッスン時間'),note:text(raw.note||'',2000,'レッスンのメモ'),items:raw.items.map(item)};
+    if(!value.id||!value.title)throw new Error('レッスン名を入力してください。');
+    if(new Set(value.items.map(i=>i.id)).size!==value.items.length)throw new Error('練習項目のIDが重複しています。');
+    return value;
+  }
+  function validate(raw){
+    const cards=raw.menuCards??[],lessons=raw.lessons??[];
+    if(!Array.isArray(cards)||cards.length>500||!Array.isArray(lessons)||lessons.length>2000)throw new Error('練習データの件数・形式を確認してください。');
+    const checked={menuCards:cards.map(item),lessons:lessons.map(lesson)};
+    for(const list of [checked.menuCards,checked.lessons])if(new Set(list.map(x=>x.id)).size!==list.length)throw new Error('練習データのIDが重複しています。');
+    if(checked.lessons.some(l=>summary(l).remaining<0))throw new Error('レッスンの予定時間が上限を超えています。');
+    return checked;
+  }
+  function summary(plan){
+    let elapsed=0;
+    const rows=plan.items.map(i=>{const start=elapsed;elapsed+=i.seconds;return {...i,from:start,to:elapsed};});
+    return {seconds:elapsed,remaining:(Number.isFinite(plan.minutes)?plan.minutes:0)*60-elapsed,distance:plan.items.reduce((n,i)=>n+i.distance*i.reps,0),rows};
+  }
+  const duration=seconds=>`${Math.floor(Math.abs(seconds)/60)}分${Math.abs(seconds)%60 ? Math.abs(seconds)%60+'秒' : ''}`;
+  function clock(start,seconds){const [h,m]=start.split(':').map(Number);const n=h*3600+m*60+seconds;return `${String(Math.floor(n/3600)%24).padStart(2,'0')}:${String(Math.floor(n%3600/60)).padStart(2,'0')}${n%60?':'+String(n%60).padStart(2,'0'):''}`;}
+  function seedCards(){return [['warmup','ウォーミングアップ','準備',5,25,4],['kick','キック練習','基礎',10,25,4],['drill','フォーム・ドリル','技術',10,25,4],['main','メインスイム','メイン',15,25,8],['cooldown','クールダウン','整理',5,25,2],['review','振り返り・移動','その他',5,0,1]].map(([id,title,category,minutes,distance,reps])=>({id:'sample-'+id,title,category,seconds:minutes*60,distance,reps,note:'時間や内容をクラスに合わせて調整してください。'}));}
+  const api={item,lesson,validate,summary,duration,clock,seedCards};
+  if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.SwimMenus=api;
+})(typeof globalThis!=='undefined'?globalThis:this);
+</script>
+<script>/* Pure calculation and validation; no storage or network. */
+(function (root) {
+  'use strict';
+  // Resolve lazily: Apps Script does not guarantee the evaluation order of .gs files.
+  function menuRules() { return typeof module !== 'undefined' && module.exports ? require('./menus.js') : root.SwimMenus; }
+  const GRADES = ['7', '6', '5', '4', '3', '2', '1', ...Array.from({length: 10}, (_, i) => `A${i + 1}`)];
+  const STROKES = {BF: 'バタフライ', BK: '背泳ぎ', BR: '平泳ぎ', FR: '自由形', IM: '個人メドレー', 'Fly/Back': 'バタフライ／背泳ぎ', 'Breast/Free': '平泳ぎ／自由形'};
+  function dateParts(value) {
+    if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
+    const [year, month, day] = value.split('-').map(Number);
+    if (year < 1900 || year > 2200) return null;
+    const date = new Date(Date.UTC(year, month - 1, day));
+    return date.getUTCFullYear() === year && date.getUTCMonth() === month - 1 && date.getUTCDate() === day ? {year, month, day} : null;
+  }
+  function ageOn(birth, date) {
+    const b = dateParts(birth), d = dateParts(date);
+    if (!b || !d || birth > date) return null;
+    return d.year - b.year - (d.month < b.month || (d.month === b.month && d.day < b.day) ? 1 : 0);
+  }
+  function schoolYear(birth, date) {
+    const d = dateParts(date), b = dateParts(birth);
+    if (!d || !b || birth > date) return '—';
+    const fiscal = d.year - (d.month < 4 ? 1 : 0);
+    const entry = b.year + (b.month < 4 || (b.month === 4 && b.day === 1) ? 6 : 7);
+    const n = fiscal - entry + 1;
+    return n < 1 ? '未就学' : n <= 6 ? `小学${n}年` : n <= 9 ? `中学${n - 6}年` : n <= 12 ? `高校${n - 9}年` : '高校卒業後';
+  }
+  function ageBand(age) {
+    if (!Number.isInteger(age) || age < 8 || age > 120) return -1;
+    return age <= 12 ? age - 8 : age <= 14 ? 5 : 6;
+  }
+  function nextGrade(grade) {
+    const i = GRADES.indexOf(grade);
+    return i < 0 || i === GRADES.length - 1 ? null : GRADES[i + 1];
+  }
+  function gradeLabel(grade) {
+    if (!grade) return '未選択';
+    return /^A\d+$/.test(grade) ? `${Number(grade.slice(1))}段` : `${grade}級`;
+  }
+  function sortPupils(pupils) {
+    // Higher ranks first; equal grades retain the registration/source order.
+    return [...pupils].sort((a, b) => GRADES.indexOf(b.grade) - GRADES.indexOf(a.grade));
+  }
+  const HISTORY_TYPES = ['registered', 'passed', 'grade_changed', 'transferred', 'class_renamed', 'withdrawn', 'rejoined', 'profile_updated', 'pass_reverted', 'withdraw_reverted', 'test_recorded'];
+  function historyEvent(event) {
+    if (!event || !HISTORY_TYPES.includes(event.type) || !dateParts(event.date)
+        || typeof event.at !== 'string' || !/^\d{4}-\d{2}-\d{2}T/.test(event.at) || !Number.isFinite(Date.parse(event.at))) throw new Error('履歴の日付・内容が正しくありません。');
+    const result = {type: event.type, date: event.date, at: event.at, from: text(event.from || '', 200, '変更前の記録'), to: text(event.to || '', 200, '変更後の記録'), note: text(event.note || '', 1000, '履歴メモ'), detail: text(event.detail || '', 500, '履歴の詳細')};
+    if (event.type === 'test_recorded') {
+      const t = event.test;
+      if (!t || !GRADES.slice(1).includes(t.grade) || !Object.hasOwn(STROKES,t.stroke)
+          || ![50,100].includes(t.distance) || !Number.isInteger(t.age) || t.age < 0 || t.age > 120
+          || !Number.isFinite(t.seconds) || t.seconds < 0.01 || t.seconds >= 3600 || Math.abs(t.seconds*100-Math.round(t.seconds*100))>1e-6
+          || (t.standardSeconds !== null && (!Number.isFinite(t.standardSeconds) || t.standardSeconds <= 0))) throw new Error('実測タイムの記録が正しくありません。');
+      result.test = {grade:t.grade,stroke:t.stroke,distance:t.distance,age:t.age,seconds:Math.round(t.seconds*100)/100,standardSeconds:t.standardSeconds};
+    }
+    return result;
+  }
+  function parseMeasuredTime(value) {
+    const input = typeof value === 'string' ? value.normalize('NFKC').trim() : '';
+    const colon = /^(\d{1,2}):([0-5]?\d)(?:\.(\d{1,2}))?$/.exec(input);
+    const seconds = colon ? Number(colon[1])*60 + Number(colon[2]) + Number('0.'+(colon[3] || '0')) : /^\d{1,4}(?:\.\d{1,2})?$/.test(input) ? Number(input) : NaN;
+    if (!Number.isFinite(seconds) || seconds <= 0 || seconds >= 3600) throw new Error('タイムは「1:23.45」または「83.45」の形式で、0秒より大きく60分未満で入力してください。小数は2桁までです。');
+    return Math.round(seconds*100)/100;
+  }
+  function formatMeasuredTime(seconds) {
+    if (!Number.isFinite(seconds)) return '—';
+    const hundredths = Math.round(seconds*100);
+    return `${Math.floor(hundredths/6000)}:${String(Math.floor(hundredths%6000/100)).padStart(2,'0')}.${String(hundredths%100).padStart(2,'0')}`;
+  }
+  function recordTest(pupil, grade, value, rules, context, pass = false) {
+    if (pupil.status === 'withdrawn') throw new Error('再入会後にタイムを記録してください。');
+    const index = GRADES.indexOf(grade);
+    if (index < 1) throw new Error('種目が登録されている受験級を選択してください。');
+    const result = calculate({...pupil,grade:GRADES[index-1]},context.date,rules);
+    if (result.age === null || !result.stroke || !result.distance) throw new Error('テスト日・受験級を確認してください。');
+    const seconds = parseMeasuredTime(value);
+    let changed = recordPupil(pupil,{...context,type:'test_recorded',test:{grade,stroke:result.stroke,distance:result.distance,age:result.age,seconds,standardSeconds:result.seconds}});
+    if (pass) {
+      if (nextGrade(pupil.grade) !== grade) throw new Error('合格にできるのは現在の合格級のひとつ先です。');
+      changed = promotePupil(changed,{...context,detail:`${STROKES[result.stroke]} ${result.distance}m / 実測 ${formatMeasuredTime(seconds)}`});
+    }
+    return changed;
+  }
+  function latestTest(pupil, date, grade) {
+    return [...(pupil.history || [])].reverse().find(h => h.type === 'test_recorded' && h.date === date && h.test.grade === grade) || null;
+  }
+  function recordPupil(pupil, event) {
+    if ((pupil.history || []).length >= 2000) throw new Error('履歴が上限に達しました。バックアップを保存してください。');
+    return {...pupil, history: [...(pupil.history || []), historyEvent(event)]};
+  }
+  function promotePupil(pupil, context) {
+    if (pupil.status === 'withdrawn') throw new Error('退会済みの子どもは再入会後に合格を記録してください。');
+    const grade = nextGrade(pupil.grade);
+    if (!grade) throw new Error('次の級が登録されていません。');
+    return recordPupil({...pupil, grade}, {...context, type:'passed', from:pupil.grade, to:grade});
+  }
+  function withdrawPupil(pupil, context) {
+    if (pupil.status === 'withdrawn') throw new Error('すでに退会済みです。');
+    return recordPupil({...pupil, status:'withdrawn'}, {...context, type:'withdrawn', from:pupil.group});
+  }
+  function rejoinPupil(pupil, group, context) {
+    if (pupil.status !== 'withdrawn') throw new Error('この子どもは在籍中です。');
+    const value = text(group, 50, 'クラス');
+    if (!value) throw new Error('再入会先のクラスを選択してください。');
+    return recordPupil({...pupil, status:'active', group:value}, {...context, type:'rejoined', from:pupil.group, to:value});
+  }
+  function transferPupil(pupil, group, context) {
+    if (pupil.status === 'withdrawn') throw new Error('退会済みの子どもは再入会先のクラスを選択してください。');
+    const value = text(group, 50, 'クラス');
+    if (!value || value === pupil.group) throw new Error('別のクラスを選択してください。');
+    return recordPupil({...pupil, group:value}, {...context, type:'transferred', from:pupil.group, to:value});
+  }
+  function formatTime(seconds) {
+    if (!Number.isFinite(seconds)) return '—';
+    const tenths = Math.round(seconds * 10);
+    return `${Math.floor(tenths / 600)}:${String(Math.floor(tenths % 600 / 10)).padStart(2, '0')}.${tenths % 10}`;
+  }
+  function calculate(pupil, date, rules) {
+    const age = ageOn(pupil.birthDate, date), next = nextGrade(pupil.grade);
+    const base = {age, school: schoolYear(pupil.birthDate, date), next, stroke: '', distance: null, seconds: null, status: ''};
+    if (age === null) return {...base, status: '生年月日・テスト日を確認'};
+    if (!GRADES.includes(pupil.grade)) return {...base, status: '合格級を選択'};
+    if (!next) return {...base, status: '次の級の基準表がありません'};
+    if (pupil.grade === '7') return {...base, stroke: 'IM', distance: 100, status: 'タイム規定なし'};
+    const rule = rules.find(r => r.grade === next);
+    if (!rule) return {...base, status: '基準表がありません'};
+    const result = {...base, stroke: rule.stroke, distance: rule.distance};
+    if (!['male', 'female'].includes(pupil.sex)) return {...result, status: '性別を選択'};
+    const band = ageBand(age);
+    if (band < 0) return {...result, status: 'この年齢の基準がありません'};
+    return {...result, seconds: rule[pupil.sex][band]};
+  }
+  function text(value, max, label) {
+    if (typeof value !== 'string' || value.length > max) throw new Error(`${label}の形式が正しくありません。`);
+    return value.trim();
+  }
+  function validateBackup(raw) {
+    if (!raw || raw.format !== 'swim-local' || raw.version !== 1 || !Array.isArray(raw.pupils)) throw new Error('このアプリの初期データ／バックアップJSONを選んでください。');
+    if (raw.pupils.length > 10000) throw new Error('名簿は10,000人までです。');
+    const ids = new Set();
+    const pupils = raw.pupils.map(p => {
+      if (!p || typeof p !== 'object') throw new Error('名簿データが正しくありません。');
+      const id = text(p.id, 100, 'ID'), name = text(p.name, 100, '氏名');
+      if (!id || ids.has(id) || !name) throw new Error('IDの重複または氏名の空欄があります。');
+      ids.add(id);
+      if (!dateParts(p.birthDate) || !['male', 'female', ''].includes(p.sex) || !['', ...GRADES].includes(p.grade)) throw new Error('生年月日・性別・合格級のいずれかが正しくありません。');
+      let source = null;
+      if (p.source != null) {
+        const s = p.source;
+        source = {};
+        for (const key of ['file', 'sheet', 'grade', 'stroke', 'distance', 'time']) source[key] = text(s[key], 100, '元表の値');
+        source.confirmation = text(s.confirmation || '', 200, '確認内容');
+        if (!Number.isInteger(s.row) || s.row < 1) throw new Error('元表の行番号が正しくありません。');
+        source.row = s.row;
+      }
+      if (p.review != null && typeof p.review !== 'boolean') throw new Error('確認状態が正しくありません。');
+      const group = text(p.group, 50, 'クラス');
+      if (!group) throw new Error('所属クラスが空欄です。');
+      const status = p.status || 'active';
+      if (!['active', 'withdrawn'].includes(status) || (p.history != null && (!Array.isArray(p.history) || p.history.length > 2000))) throw new Error('在籍状態または履歴の形式が正しくありません。');
+      const history = (p.history || []).map(historyEvent);
+      return {id, name, birthDate: p.birthDate, sex: p.sex, grade: p.grade, group, status, history, note: text(p.note || '', 1000, 'メモ'), review: Boolean(p.review), source};
+    });
+    if (raw.testDate && !dateParts(raw.testDate)) throw new Error('テスト日が正しくありません。');
+    const revision = raw.dataRevision ?? 0;
+    if (!Number.isInteger(revision) || revision < 0 || revision > 2) throw new Error('対応していない名簿の更新版です。');
+    // One-time migration for the lower block of the original J workbook.
+    // Never reset an explicit move to another group or repeat on later saves.
+    if (revision < 2) pupils.forEach(p => {
+      if (p.group === 'J' && p.source?.file === 'J.xlsx' && p.source.sheet === '202611'
+          && p.source.row >= 11 && p.source.row <= 18 && p.id === `J-${p.source.row}`) p.group = 'J2';
+    });
+    if (raw.classes != null && (!Array.isArray(raw.classes) || raw.classes.length > 1000)) throw new Error('クラス一覧の形式が正しくありません。');
+    const classes = (raw.classes || []).map(name => {
+      const value = text(name, 50, 'クラス');
+      if (!value) throw new Error('クラス名が空欄です。');
+      return value;
+    });
+    return {format: 'swim-local', version: 1, dataRevision: 2, testDate: raw.testDate || '', classes: [...new Set([...classes, ...pupils.filter(p => p.status === 'active').map(p => p.group)])], pupils, ...menuRules().validate(raw)};
+  }
+  function csvCell(value) {
+    let valueText = String(value ?? '');
+    if (/^[\s]*[=+@-]/.test(valueText)) valueText = "'" + valueText;
+    return '"' + valueText.replace(/"/g, '""') + '"';
+  }
+  function importBackup(current, incoming, mode) {
+    const valid = validateBackup(incoming);
+    const baseline = validateBackup(current);
+    if (mode === 'replace') return {...valid, testDate: valid.testDate || baseline.testDate,
+      // Older offline backups do not contain practice data; importing them must not erase lesson plans.
+      menuCards: incoming.menuCards == null ? baseline.menuCards : valid.menuCards,
+      lessons: incoming.lessons == null ? baseline.lessons : valid.lessons};
+    if (mode !== 'merge') throw new Error('反映方法を選択してください。');
+    const map = new Map(baseline.pupils.map(p => [p.id, p]));
+    valid.pupils.forEach(p => {
+      const previous = map.get(p.id);
+      const events = new Map([...(previous?.history || []), ...p.history].map(h => [JSON.stringify(h), h]));
+      map.set(p.id, {...p, history:[...events.values()].sort((a,b) => a.at.localeCompare(b.at))});
+    });
+    const mergedList=(old,list)=>[...new Map([...old,...list].map(x=>[x.id,x])).values()];
+    return validateBackup({...baseline, classes: [...new Set([...baseline.classes, ...valid.classes])], pupils: [...map.values()],menuCards:mergedList(baseline.menuCards,valid.menuCards),lessons:mergedList(baseline.lessons,valid.lessons)});
+  }
+  function addClass(current, name) {
+    const baseline = validateBackup(current), value = text(name, 50, 'クラス');
+    if (!value) throw new Error('クラス名を入力してください。');
+    if (baseline.classes.includes(value)) throw new Error('同じ名前のクラスがすでにあります。');
+    return validateBackup({...baseline, classes: [...baseline.classes, value]});
+  }
+  function renameClass(current, oldName, name, context) {
+    const baseline = validateBackup(current), value = text(name, 50, 'クラス');
+    if (!value) throw new Error('クラス名を入力してください。');
+    if (!baseline.classes.includes(oldName)) throw new Error('変更するクラスが見つかりません。');
+    if (oldName !== value && baseline.classes.includes(value)) throw new Error('同じ名前のクラスがすでにあります。');
+    return validateBackup({...baseline, classes: baseline.classes.map(g => g === oldName ? value : g), pupils: baseline.pupils.map(p => {
+      if (p.status !== 'active' || p.group !== oldName || oldName === value) return p;
+      const changed = {...p, group:value};
+      return context ? recordPupil(changed, {...context, type:'class_renamed', from:oldName, to:value}) : changed;
+    })});
+  }
+  function removeClass(current, name) {
+    const baseline = validateBackup(current);
+    if (baseline.pupils.some(p => p.status === 'active' && p.group === name)) throw new Error('在籍中の子どもを別のクラスへ移してから削除してください。');
+    return {...baseline, classes: baseline.classes.filter(g => g !== name)};
+  }
+  const api = {GRADES, STROKES, dateParts, ageOn, schoolYear, ageBand, nextGrade, gradeLabel, sortPupils, promotePupil, recordPupil, withdrawPupil, rejoinPupil, transferPupil, formatTime, parseMeasuredTime, formatMeasuredTime, recordTest, latestTest, calculate, validateBackup, importBackup, addClass, renameClass, removeClass, csvCell};
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  else root.SwimCore = api;
+})(typeof globalThis !== 'undefined' ? globalThis : this);
+</script>
+<script>/* Cross-origin Apps Script transport. Credentials are sent only in HTTPS POST bodies. */
+(function(root){
+  'use strict';
+  function isGoogleOrigin(origin){try{const u=new URL(origin);return u.protocol==='https:'&&(u.hostname==='script.google.com'||u.hostname==='script.googleusercontent.com'||u.hostname.endsWith('-script.googleusercontent.com'));}catch{return false;}}
+  function isFrameSource(source,frame){try{for(let i=0;source&&i<6;i++){if(source===frame)return true;const parent=source.parent;if(parent===source)break;source=parent;}}catch{}return false;}
+  function validEndpoint(value){try{const u=new URL(value);return u.origin==='https://script.google.com'&&/^\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(u.pathname)&&!u.search&&!u.hash;}catch{return false;}}
+  function post(config,payload){
+    if(!validEndpoint(config.apiUrl))return Promise.reject(Object.assign(new Error('Google側の接続設定が未完了です。管理者用の導入手順を確認してください。'),{code:'NOT_CONFIGURED'}));
+    if(location.protocol!=='https:'&&location.hostname!=='localhost'&&location.hostname!=='127.0.0.1')return Promise.reject(new Error('GitHub PagesのURLから開いてください。'));
+    return new Promise((resolve,reject)=>{
+      const requestId=crypto.randomUUID(),iframe=document.createElement('iframe'),form=document.createElement('form'),field=document.createElement('input');
+      iframe.name='swim_'+requestId;iframe.hidden=true;iframe.title='スイムノートの保存通信';
+      form.method='POST';form.action=config.apiUrl;form.target=iframe.name;form.hidden=true;
+      field.name='payload';field.value=JSON.stringify({...payload,requestId,origin:location.origin});form.append(field);
+      const cleanup=()=>{clearTimeout(timer);window.removeEventListener('message',onMessage);form.remove();iframe.remove();};
+      const onMessage=event=>{
+        const data=event.data;
+        if(!isGoogleOrigin(event.origin)||!isFrameSource(event.source,iframe.contentWindow)||!data||data.channel!=='swim-api-v1'||data.requestId!==requestId)return;
+        cleanup();if(data.ok)resolve(data.value);else reject(Object.assign(new Error(data.error?.message||'処理を完了できませんでした。'),{code:data.error?.code||'SERVER_ERROR'}));
+      };
+      const timer=setTimeout(()=>{cleanup();reject(Object.assign(new Error('通信が完了しませんでした。接続を確認して再試行してください。'),{code:'NETWORK'}));},60000);
+      window.addEventListener('message',onMessage);document.body.append(iframe,form);form.submit();
+    });
+  }
+  const api={post,isGoogleOrigin,isFrameSource,validEndpoint};
+  if(typeof module!=='undefined'&&module.exports)module.exports=api;else root.SwimCloud=api;
+})(typeof globalThis!=='undefined'?globalThis:this);
+</script>
+<script>(function(root){
+  'use strict';
+  function mount({getState,commit,toast,today,esc}){
+    const M=SwimMenus,$=id=>document.getElementById(id),uid=()=>crypto.randomUUID();
+    let draft=null,cardId=null,dirty=false;
+    const blank=()=>({id:uid(),title:'練習メニュー',date:today(),start:'16:00',group:'',minutes:60,note:'',items:[]});
+    function resetDraft(){draft=blank();dirty=false;fill();}
+    function clear(){draft=blank();cardId=null;dirty=false;fill();$('menu-library').textContent='';$('lesson-list').innerHTML='<option value="">保存したレッスン</option>';$('lesson-preview-content').textContent='';}
+    function fill(){if(!draft)draft=blank();for(const key of ['title','date','start','group','minutes','note'])$('lesson-'+key).value=draft[key];renderTimeline();}
+    function read(){if(!draft)draft=blank();for(const key of ['title','date','start','group','note'])draft[key]=$('lesson-'+key).value;draft.minutes=Number($('lesson-minutes').value);return draft;}
+    function renderLibrary(){
+      const state=getState(),query=$('menu-search').value.trim().toLowerCase();
+      $('menu-library').innerHTML=state.menuCards.filter(c=>(c.title+c.category+c.note).toLowerCase().includes(query)).map(c=>`<article class="menu-card"><div><span class="menu-category">${esc(c.category)}</span><strong>${M.duration(c.seconds)}</strong></div><h3>${esc(c.title)}</h3><p>${c.distance?`${c.distance}m × ${c.reps}本 · ${c.distance*c.reps}m`:'時間で組むメニュー'}</p>${c.note?`<p class="menu-note">${esc(c.note)}</p>`:''}<footer><button class="button primary" data-add-menu="${esc(c.id)}">＋ 追加</button><button class="text-button" data-edit-menu="${esc(c.id)}">編集</button></footer></article>`).join('')||'<p class="small">練習カードがありません。「カードを作成」から登録できます。</p>';
+      const selected=$('lesson-list').value;
+      $('lesson-list').innerHTML='<option value="">保存したレッスン</option>'+[...state.lessons].sort((a,b)=>b.date.localeCompare(a.date)).map(l=>`<option value="${esc(l.id)}">${esc(l.date+' '+l.group+' '+l.title)}</option>`).join('');
+      if(state.lessons.some(l=>l.id===selected))$('lesson-list').value=selected;
+    }
+    function renderTimeline(){
+      if(!draft)return;const result=M.summary(draft),limit=draft.minutes*60;
+      $('lesson-used').textContent=M.duration(result.seconds);$('lesson-remaining').textContent=(result.remaining<0?'超過 ':'残り ')+M.duration(result.remaining);
+      $('lesson-remaining').classList.toggle('over-time',result.remaining<0);$('lesson-distance').textContent=result.distance+'m';
+      $('lesson-meter').value=Math.min(result.seconds,limit||1);$('lesson-meter').max=limit||1;
+      $('lesson-dirty').textContent=dirty?'未保存の変更があります':'レッスンを編集して保存できます';
+      $('lesson-items').innerHTML=result.rows.map((i,n)=>`<li class="lesson-item"><div class="item-time">${M.clock(draft.start||'00:00',i.from)}<span>${M.clock(draft.start||'00:00',i.to)}</span></div><div class="item-main"><strong>${esc(i.title)}</strong><span>${i.distance?`${i.distance}m × ${i.reps}本`:'時間指定'}</span><label>予定時間 <input type="number" min="0.5" max="240" step="0.5" data-item-minutes="${esc(i.id)}" aria-label="${esc(i.title)}の予定時間" value="${i.seconds/60}"> 分</label>${i.note?`<p>${esc(i.note)}</p>`:''}</div><div class="item-actions"><button class="text-button" data-move-item="${esc(i.id)}" data-direction="-1" ${n===0?'disabled':''} aria-label="${esc(i.title)}を上へ">↑</button><button class="text-button" data-move-item="${esc(i.id)}" data-direction="1" ${n===result.rows.length-1?'disabled':''} aria-label="${esc(i.title)}を下へ">↓</button><button class="text-button danger-text" data-remove-item="${esc(i.id)}" aria-label="${esc(i.title)}を外す">外す</button></div></li>`).join('')||'<li class="lesson-empty">左のカードから練習を追加してください。</li>';
+    }
+    function render(){if(!draft)resetDraft();renderLibrary();renderTimeline();}
+    function changed(){dirty=true;renderTimeline();}
+    ['title','date','start','group','minutes','note'].forEach(key=>$('lesson-'+key).addEventListener('input',()=>{read();changed();}));
+    $('menu-search').addEventListener('input',renderLibrary);
+    $('menu-library').addEventListener('click',e=>{
+      const add=e.target.closest('[data-add-menu]'),edit=e.target.closest('[data-edit-menu]');
+      if(add){const card=getState().menuCards.find(c=>c.id===add.dataset.addMenu);if(card){read();if(draft.items.length>=100){toast('1レッスンは100項目までです。');return;}draft.items.push({...card,id:uid()});changed();}}
+      if(edit)openCard(edit.dataset.editMenu);
+    });
+    $('lesson-items').addEventListener('change',e=>{const input=e.target.closest('[data-item-minutes]');if(!input)return;const seconds=Number(input.value)*60;if(!Number.isInteger(seconds)||seconds<30||seconds>14400){toast('予定時間は0.5〜240分で入力してください。');renderTimeline();return;}draft.items.find(i=>i.id===input.dataset.itemMinutes).seconds=seconds;changed();});
+    $('lesson-items').addEventListener('click',e=>{const move=e.target.closest('[data-move-item]'),remove=e.target.closest('[data-remove-item]');if(move){const index=draft.items.findIndex(i=>i.id===move.dataset.moveItem),target=index+Number(move.dataset.direction);if(target>=0&&target<draft.items.length)[draft.items[index],draft.items[target]]=[draft.items[target],draft.items[index]];changed();}if(remove){draft.items=draft.items.filter(i=>i.id!==remove.dataset.removeItem);changed();}});
+    function openCard(id){const card=getState().menuCards.find(c=>c.id===id);cardId=card?.id||null;$('menu-card-form').reset();$('menu-card-error').hidden=true;$('delete-menu-card').hidden=!card;
+      for(const key of ['title','category','distance','reps','note'])$('card-'+key).value=card?.[key]??({category:'練習',distance:25,reps:4}[key]||'');$('card-minutes').value=card?card.seconds/60:5;$('menu-card-dialog').showModal();}
+    $('create-menu-card').addEventListener('click',()=>openCard());
+    $('menu-card-form').addEventListener('submit',async e=>{e.preventDefault();try{const card=M.item({id:cardId||uid(),title:$('card-title').value,category:$('card-category').value,seconds:Number($('card-minutes').value)*60,distance:Number($('card-distance').value),reps:Number($('card-reps').value),note:$('card-note').value});const state=getState(),menuCards=cardId?state.menuCards.map(c=>c.id===cardId?card:c):[...state.menuCards,card];if(await commit({...state,menuCards})){$('menu-card-dialog').close();toast('練習カードを保存しました。');}}catch(error){$('menu-card-error').textContent=error.message;$('menu-card-error').hidden=false;}});
+    $('delete-menu-card').addEventListener('click',async()=>{if(!cardId||!confirm('この練習カードを削除しますか？ 作成済みのレッスンには残ります。'))return;const state=getState();if(await commit({...state,menuCards:state.menuCards.filter(c=>c.id!==cardId)})){$('menu-card-dialog').close();toast('練習カードを削除しました。');}});
+    $('new-lesson').addEventListener('click',()=>{if(dirty&&!confirm('未保存の変更を破棄して新しいレッスンを作りますか？'))return;resetDraft();$('lesson-list').value='';});
+    $('lesson-list').addEventListener('change',()=>{const plan=getState().lessons.find(l=>l.id===$('lesson-list').value);if(!plan)return;if(dirty&&!confirm('未保存の変更を破棄して、選んだレッスンを開きますか？'))return;draft=JSON.parse(JSON.stringify(plan));dirty=false;fill();});
+    async function saveLesson(copy){try{let plan=M.lesson(read());if(copy)plan={...plan,id:uid()};if(M.summary(plan).remaining<0){toast('レッスン時間を超えています。項目の時間かレッスン時間を調整してください。');return;}const state=getState(),exists=state.lessons.some(l=>l.id===plan.id),lessons=exists?state.lessons.map(l=>l.id===plan.id?plan:l):[...state.lessons,plan];if(await commit({...state,lessons})){draft=plan;dirty=false;renderLibrary();$('lesson-list').value=plan.id;fill();toast('レッスンを保存しました。');}}catch(error){toast(error.message);}}
+    $('save-lesson').addEventListener('click',()=>saveLesson(false));$('copy-lesson').addEventListener('click',()=>saveLesson(true));
+    $('delete-lesson').addEventListener('click',async()=>{const state=getState();if(!draft||!state.lessons.some(l=>l.id===draft.id)){toast('保存済みのレッスンを選択してください。');return;}if(!confirm('このレッスンを削除しますか？'))return;if(await commit({...state,lessons:state.lessons.filter(l=>l.id!==draft.id)})){resetDraft();renderLibrary();toast('レッスンを削除しました。');}});
+    $('preview-lesson').addEventListener('click',()=>{try{const plan=M.lesson(read()),s=M.summary(plan);$('lesson-preview-content').innerHTML=`<h1>${esc(plan.title)}</h1><p>${esc(plan.date)} · ${esc(plan.group||'クラス指定なし')} · ${plan.start}〜${M.clock(plan.start,plan.minutes*60)} / ${plan.minutes}分</p><div class="preview-metrics">練習 ${M.duration(s.seconds)} · ${s.remaining<0?'超過':'残り'} ${M.duration(s.remaining)} · 合計 ${s.distance}m</div><ol>${s.rows.map(i=>`<li><time>${M.clock(plan.start,i.from)}〜${M.clock(plan.start,i.to)}</time><div><strong>${esc(i.title)}</strong><p>${i.distance?`${i.distance}m × ${i.reps}本 · `:''}${M.duration(i.seconds)}</p>${i.note?`<p>${esc(i.note)}</p>`:''}</div></li>`).join('')}</ol>${plan.note?`<p class="preview-note">${esc(plan.note)}</p>`:''}`;$('lesson-preview-dialog').showModal();}catch(error){toast(error.message);}});
+    $('print-lesson').addEventListener('click',()=>{document.body.classList.add('printing-lesson');window.print();});
+    window.addEventListener('afterprint',()=>document.body.classList.remove('printing-lesson'));
+    $('lesson-preview-dialog').addEventListener('close',()=>document.body.classList.remove('printing-lesson'));
+    return {render,renderLibrary,resetDraft,clear};
+  }
+  root.SwimPractice={mount};
+})(globalThis);
+</script>
+<script>(function () {
+  'use strict';
+  const C = SwimCore;
+  const rules = JSON.parse(document.getElementById('rule-data').textContent);
+  const $ = id => document.getElementById(id);
+  const esc = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[c]));
+  const today = () => {const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;};
+  const historyContext = (date = today()) => ({date, at:new Date().toISOString()});
+  if(window.top!==window.self){$('login-form').hidden=true;$('login-message').textContent='このページを新しいタブで直接開いてください。';return;}
+  let state = C.validateBackup({format:'swim-local',version:1,dataRevision:2,testDate:today(),classes:[],pupils:[]});
+  let practice=null;
+  let selectedClass = '', onlyReview = false, search = '', archiveSearch = '', editing = null, lifecycleAction = '', pendingImport = null, recordingId = null, undo = null, toastTimer;
+
+  const config=JSON.parse(document.getElementById('cloud-config').textContent);
+  let token=null, revision=0, busy=false, epoch=0, pendingWrite=null, lastActivity=0, lastPing=0;
+  const emptyState=()=>C.validateBackup({format:'swim-local',version:1,dataRevision:2,testDate:today(),classes:[],pupils:[]});
+  function storageAlert(message) {$('storage-alert').textContent=message;$('storage-alert').hidden=!message;}
+  function toast(message) {clearTimeout(toastTimer);$('toast').textContent=message;$('toast').hidden=false;toastTimer=setTimeout(()=>{$('toast').hidden=true;},4000);}
+  function request(action,data={},session=token){return SwimCloud.post(config,{action,token:session,...data});}
+  function setBusy(value){busy=value;$('busy-panel').hidden=!value;document.querySelector('.app-shell').inert=value;document.querySelector('.app-header').inert=value;document.querySelectorAll('dialog[open] button').forEach(el=>{if(value){el.dataset.wasDisabled=String(el.disabled);el.disabled=true;}else if(el.dataset.wasDisabled!==undefined){el.disabled=el.dataset.wasDisabled==='true';delete el.dataset.wasDisabled;}});}
+  function lock(message='ログインしてください。'){
+    const previous=token;token=null;epoch++;pendingWrite=null;revision=0;lastActivity=0;editing=null;pendingImport=null;recordingId=null;undo=null;
+    state=emptyState();selectedClass='';search='';archiveSearch='';onlyReview=false;
+    document.querySelectorAll('dialog[open]').forEach(d=>d.close());
+    document.querySelectorAll('form').forEach(f=>f.reset());
+    ['history-list','source-detail','pupil-preview','test-context','test-recent','test-pupil-name','undo-text','toast','signed-in-user','class-list','import-description','import-groups','import-impact'].forEach(id=>{$(id).textContent='';});
+    document.querySelectorAll('input[type=search]').forEach(i=>{i.value='';});
+    if(practice)practice.clear();render();view('roster');setBusy(false);storageAlert('');$('sync-actions').hidden=true;$('toast').hidden=true;
+    $('auth-screen').hidden=false;document.querySelector('.app-header').hidden=true;document.querySelector('.app-shell').hidden=true;
+    $('login-message').textContent=message;$('login-password').value='';$('login-button').disabled=false;
+    if(previous)request('logout',{},previous).catch(()=>{});
+  }
+  function sessionFailure(error){if(error.code==='AUTH_REQUIRED'){lock('ログインの有効期限が切れました。再ログインしてください。');return true;}return false;}
+  async function commit(next) {
+    if(!token||busy||pendingWrite){toast(pendingWrite?'未確定の保存を先に再試行するか、最新のデータを取得してください。':'保存処理の完了を待ってください。');return false;}
+    pendingWrite={state:C.validateBackup(next),expectedRevision:revision,mutationId:crypto.randomUUID()};
+    return savePending();
+  }
+  async function savePending(){
+    if(!pendingWrite||!token||busy)return false;
+    const ticket=epoch,change=pendingWrite;setBusy(true);storageAlert('');
+    try{
+      const result=await request('save',change);
+      if(ticket!==epoch||!token)return false;
+      revision=result.revision;state=change.state;pendingWrite=null;$('sync-actions').hidden=true;render();return true;
+    }catch(error){
+      if(ticket!==epoch||sessionFailure(error))return false;
+      storageAlert(error.code==='CONFLICT'?'別のPCで更新されています。未確定の変更はバックアップで保存できます。「最新を取得」で最新の名簿に切り替えてください。':error.message+' 未確定の変更は「保存を再試行」できます。');
+      $('sync-actions').hidden=false;return false;
+    }finally{if(ticket===epoch)setBusy(false);}
+  }
+  $('retry-save').addEventListener('click',async()=>{if(await savePending()){document.querySelectorAll('dialog[open]').forEach(d=>d.close());if(practice)practice.resetDraft();toast('未確定の変更を保存しました。');}});
+  $('refresh-data').addEventListener('click',async()=>{
+    if(!token||busy)return;
+    if(pendingWrite&&!confirm('未確定の変更を破棄して、Google側の最新データに切り替えますか？ 必要なら先にバックアップを保存してください。'))return;
+    const ticket=epoch;setBusy(true);
+    try{const data=await request('load');if(ticket!==epoch)return;state=C.validateBackup(data.state);revision=data.revision;pendingWrite=null;undo=null;editing=null;document.querySelectorAll('dialog[open]').forEach(d=>d.close());if(practice)practice.resetDraft();storageAlert('');$('sync-actions').hidden=true;render();toast('最新のデータに更新しました。');}
+    catch(error){if(ticket===epoch&&!sessionFailure(error))storageAlert(error.message);}
+    finally{if(ticket===epoch)setBusy(false);}
+  });
+  $('login-form').addEventListener('submit',async e=>{
+    e.preventDefault();if($('login-button').disabled)return;
+    $('login-button').disabled=true;$('login-message').textContent='ログインを確認しています…';const ticket=++epoch;
+    const username=$('login-id').value.trim(),password=$('login-password').value;
+    try{const result=await request('login',{username,password},null);if(ticket!==epoch)return;
+      state=C.validateBackup(result.state);if(!state.testDate)state.testDate=today();token=result.token;revision=result.revision;lastActivity=Date.now();lastPing=Date.now();
+      $('login-password').value='';$('auth-screen').hidden=true;document.querySelector('.app-header').hidden=false;document.querySelector('.app-shell').hidden=false;
+      $('signed-in-user').textContent=result.username;if(practice)practice.resetDraft();render();view('roster');
+    }catch(error){if(ticket===epoch){$('login-message').textContent=error.message;$('login-password').value='';}}
+    finally{if(ticket===epoch)$('login-button').disabled=false;}
+  });
+  $('logout-button').addEventListener('click', async ()=>lock('ログアウトしました。'));
+  const IDLE_MS=10*60*1000;
+  function activity(){if(!token)return;if(Date.now()-lastActivity>=IDLE_MS){lock('10分間操作がなかったため、ログアウトしました。');return;}lastActivity=Date.now();}
+  ['pointerdown','pointermove','keydown','wheel','touchstart'].forEach(type=>document.addEventListener(type,activity,{passive:true}));
+  async function checkSession(){
+    if(!token)return;
+    if(Date.now()-lastActivity>=IDLE_MS){lock('10分間操作がなかったため、ログアウトしました。');return;}
+    if(lastActivity>lastPing&&Date.now()-lastPing>=60000&&!busy){const ticket=epoch;lastPing=Date.now();try{await request('ping');}catch(error){if(ticket===epoch)sessionFailure(error);}}
+  }
+  setInterval(checkSession,15000);document.addEventListener('visibilitychange', async ()=>{if(!document.hidden)checkSession();});
+  window.addEventListener('pagehide', async ()=>lock('ログインしてください。'));
+  const gradeLabel = C.gradeLabel;
+  function gradeOptions(value) {
+    return '<option value="">選択</option>' + C.GRADES.map(g => `<option value="${g}"${g === value ? ' selected' : ''}>${gradeLabel(g)}</option>`).join('');
+  }
+  function issues(p) {const result = C.calculate(p, state.testDate, rules); return p.review || (result.status && result.status !== 'タイム規定なし');}
+  function groups() {return [...state.classes].sort((a,b) => a.localeCompare(b,'ja',{numeric:true}));}
+  function activePupils() {return state.pupils.filter(p => p.status !== 'withdrawn');}
+  function normalize(value) {return value.normalize('NFKC').toLocaleLowerCase('ja').replace(/[\s　]/g,'').replace(/[ぁ-ゖ]/g,c => String.fromCharCode(c.charCodeAt(0) + 0x60));}
+  function visiblePupils() {
+    const q = normalize(search);
+    return C.sortPupils(activePupils().filter(p => (!selectedClass || p.group === selectedClass) && (!onlyReview || issues(p)) && (!q || normalize(p.name + p.group).includes(q))));
+  }
+  function render() {
+    const allGroups = groups();
+    if (selectedClass && !allGroups.includes(selectedClass)) selectedClass = '';
+    $('test-date').value = state.testDate;
+    const active = activePupils();
+    $('total-count').innerHTML = `${active.length}<small>人</small>`;
+    $('class-count').innerHTML = `${allGroups.length}<small>クラス</small>`;
+    const issueCount = active.filter(issues).length;
+    $('review-count').innerHTML = `${issueCount}<small>人</small>`;
+    $('review-filter').classList.toggle('has-issues', Boolean(issueCount));
+    $('review-filter').setAttribute('aria-pressed', String(onlyReview));
+    $('class-tabs').innerHTML = [{name:'', label:'すべて', count:active.length}, ...allGroups.map(g => ({name:g,label:g,count:active.filter(p => p.group === g).length}))].map(g => `<button class="class-tab ${g.name === selectedClass ? 'active' : ''}" data-class="${esc(g.name)}" aria-pressed="${g.name === selectedClass}"><span>${esc(g.label)}</span><small>${g.count}<span>人</span></small></button>`).join('');
+    $('group-options').innerHTML = allGroups.map(g => `<option value="${esc(g)}"></option>`).join('');
+    renderTable();
+    renderArchive();
+    $('save-status').textContent=pendingWrite?'保存を完了していません':token?'Googleスプレッドシートに保存済み':'ログインが必要です';
+    if(practice)practice.renderLibrary();
+    $('undo-panel').hidden = !undo;
+    if (undo) $('undo-text').textContent = undo.type === 'grade' ? `${undo.name} さんを${gradeLabel(undo.to)}合格にしました。` : `${undo.name} さんを退会として保管しました。`;
+  }
+  function renderTable() {
+    const visible = visiblePupils();
+    $('table-description').textContent = `${state.testDate.replaceAll('-', '/')} テスト  ·  ${selectedClass || '全クラス'}  ·  ${visible.length}人`;
+    $('list-heading').textContent = selectedClass ? `${selectedClass} のテスト名簿` : 'すべてのテスト名簿';
+    $('list-count').textContent = `${visible.length}人`;
+    $('hundred-count').textContent = visible.filter(p => C.calculate(p, state.testDate, rules).distance === 100).length;
+    $('empty-state').hidden = activePupils().length > 0;
+    $('empty-heading').textContent = state.pupils.length ? '在籍中の子どもがいません' : '最初の名簿を登録しましょう';
+    $('empty-copy').textContent = state.pupils.length ? '退会した子の情報と履歴は「退会した子」で確認できます。再入会もそこから手続きできます。' : '以前のアプリのバックアップJSONを開くか、子どもを追加してください。';
+    $('table-container').hidden = !visible.length;
+    $('no-results').hidden = activePupils().length === 0 || visible.length > 0;
+    $('filter-notice').hidden = !onlyReview;
+    $('filter-notice').textContent = '要確認の子どもだけを表示しています。上の「要確認」をもう一度押すと解除できます。';
+    $('csv-button').disabled = $('print-button').disabled = !visible.length;
+    $('roster-body').innerHTML = visible.map(p => {
+      const r = C.calculate(p, state.testDate, rules);
+      const measured = C.latestTest(p,state.testDate,r.next);
+      const code = r.stroke === 'Fly/Back' ? 'BFBK' : r.stroke === 'Breast/Free' ? 'BRFR' : r.stroke;
+      return `<tr class="${r.distance === 100 ? 'distance-100' : ''}"><td><span class="name-cell">${esc(p.name)}</span><span class="subtext">${esc(r.school)}</span><span class="birth-print print-only">生年月日 ${esc(p.birthDate.replaceAll('-','/'))}</span></td><td><span class="class-tag">${esc(p.group)}</span></td><td class="sex-cell">${p.sex === 'male' ? '男' : p.sex === 'female' ? '女' : '未登録'}</td><td class="age-cell">${r.age ?? '—'}<small>歳</small></td><td class="grade-cell"><select class="grade-select" data-grade-id="${esc(p.id)}" aria-label="${esc(p.name)}の合格級">${gradeOptions(p.grade)}</select><span class="grade-print print-only">${gradeLabel(p.grade)}</span></td><td class="next-grade"><span class="grade-arrow" aria-hidden="true">→</span><span>${r.next ? gradeLabel(r.next) : '—'}</span></td><td>${r.stroke ? `<span class="stroke-tag ${['BF','BK','BR','FR','IM'].includes(r.stroke) ? r.stroke : ''}">${esc(code)}</span><span class="stroke-name">${esc(C.STROKES[r.stroke])}</span>` : '—'}</td><td><span class="distance-badge ${r.distance === 100 ? 'hundred-badge' : ''}">${r.distance === 100 ? '<span class="distance-star" aria-hidden="true">★</span> ' : ''}${r.distance ? r.distance + '<small>m</small>' : '—'}</span></td><td class="time-cell"><span class="time ${p.review ? 'warning' : ''}">${C.formatTime(r.seconds)}</span>${r.status ? `<span class="status-note">${esc(r.status)}</span>` : ''}${measured ? `<span class="measured-inline">実測 ${C.formatMeasuredTime(measured.test.seconds)}</span>` : ''}${p.review ? `<button class="flag" data-edit-id="${esc(p.id)}">元表を確認・計算値は参考</button>` : ''}</td><td class="no-print"><div class="row-actions"><button class="pass-button" data-pass-id="${esc(p.id)}" aria-label="${esc(p.name)}を${r.next ? gradeLabel(r.next) : '次の級'}合格にする" ${r.next ? '' : 'disabled'}>✓ 合格</button><button class="record-button" data-record-id="${esc(p.id)}" aria-label="${esc(p.name)}のタイムを記録">タイム</button><button class="edit-button" data-edit-id="${esc(p.id)}" aria-label="${esc(p.name)}を編集">編集</button></div></td><td class="print-only result-cell"></td></tr>`;
+    }).join('');
+  }
+  function view(name) {
+    if(name==='practice'&&practice)practice.render();
+    document.querySelectorAll('.view').forEach(el => {el.hidden = el.id !== `view-${name}`;});
+    document.querySelectorAll('[data-view]').forEach(el => {el.classList.toggle('active', el.dataset.view === name); el.setAttribute('aria-current', el.dataset.view === name ? 'page' : 'false');});
+  }
+  function renderArchive() {
+    const archived = state.pupils.filter(p => p.status === 'withdrawn');
+    $('archive-count').textContent = archived.length;
+    const q = normalize(archiveSearch);
+    const visible = C.sortPupils(archived.filter(p => !q || normalize(p.name + p.group).includes(q)));
+    $('archive-summary').textContent = `${archived.length}人の記録を保管中。再入会しても以前の合格級と履歴を引き継ぎます。`;
+    $('archive-empty').hidden = visible.length > 0;
+    $('archive-table').hidden = visible.length === 0;
+    $('archive-body').innerHTML = visible.map(p => {
+      const event = [...p.history].reverse().find(h => h.type === 'withdrawn');
+      return `<tr><td><span class="name-cell">${esc(p.name)}</span><span class="subtext">退会済み</span></td><td><span class="class-tag">${esc(p.group)}</span></td><td>${gradeLabel(p.grade)}</td><td>${esc(event?.date || '記録なし')}</td><td class="archive-note">${esc(event?.note || '—')}</td><td><button class="button secondary" data-archive-id="${esc(p.id)}">記録・再入会</button></td></tr>`;
+    }).join('');
+  }
+  $('archive-search').addEventListener('input', async ()=> {archiveSearch = $('archive-search').value; renderArchive();});
+  $('archive-body').addEventListener('click', async e=> {const button = e.target.closest('[data-archive-id]'); if (button) openPupil(button.dataset.archiveId);});
+  document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', async ()=> view(button.dataset.view)));
+  document.querySelector('.brand').addEventListener('click', async e=> {e.preventDefault(); view('roster');});
+  $('test-date').addEventListener('change', async ()=> {
+    if (!C.dateParts($('test-date').value)) {$('test-date').value = state.testDate; toast('有効なテスト日を入力してください。'); return;}
+    if (!await commit({...state, testDate:$('test-date').value})) $('test-date').value = state.testDate;
+  });
+  $('class-tabs').addEventListener('click', async e=> {const button=e.target.closest('[data-class]'); if (button) {selectedClass=button.dataset.class; render();}});
+  $('review-filter').addEventListener('click', async ()=> {onlyReview = !onlyReview; render();});
+  $('search').addEventListener('input', async ()=> {search = $('search').value; renderTable();});
+  $('clear-filters').addEventListener('click', async ()=> {selectedClass=''; search=''; onlyReview=false; $('search').value=''; render();});
+  $('roster-body').addEventListener('change', async e=> {
+    const select=e.target.closest('[data-grade-id]'); if (!select) return;
+    const id=select.dataset.gradeId;
+    const pupil=state.pupils.find(p => p.id===id);
+    if (!pupil) return;
+    try {
+    const changed = C.recordPupil({...pupil,grade:select.value}, {...historyContext(),type:'grade_changed',from:pupil.grade,to:select.value});
+    if (await commit({...state, pupils:state.pupils.map(p => p.id===id ? changed : p)})) {
+      toast(`${pupil.name} さんの合格級を更新しました。`);
+      [...document.querySelectorAll('[data-grade-id]')].find(el => el.dataset.gradeId===id)?.focus();
+    } else renderTable();
+    } catch(error) {toast(error.message); renderTable();}
+  });
+  $('roster-body').addEventListener('click', async e=> {
+    const editButton = e.target.closest('[data-edit-id]');
+    if (editButton) {openPupil(editButton.dataset.editId); return;}
+    const recordButton = e.target.closest('[data-record-id]');
+    if (recordButton) {openTestRecord(recordButton.dataset.recordId); return;}
+    const passButton = e.target.closest('[data-pass-id]');
+    if (!passButton) return;
+    const pupil = state.pupils.find(p => p.id === passButton.dataset.passId);
+    if (!pupil || !C.nextGrade(pupil.grade)) return;
+    try {
+    const tested = C.calculate(pupil,state.testDate,rules);
+    const promoted = C.promotePupil(pupil, {...historyContext(state.testDate),detail:`${C.STROKES[tested.stroke] || '種目未登録'} ${tested.distance || '—'}m / ${tested.seconds === null ? tested.status : '規定 '+C.formatTime(tested.seconds)} / 当日 ${tested.age ?? '—'}歳`});
+    if (await commit({...state, pupils: state.pupils.map(p => p.id === pupil.id ? promoted : p)})) {
+      undo = {type:'grade', id:pupil.id, name:pupil.name, from:pupil.grade, to:promoted.grade, date:state.testDate};
+      render();
+      toast(`${pupil.name} さん：${gradeLabel(promoted.grade)}合格。次回のテストを更新しました。`);
+    }
+    } catch(error) {toast(error.message);}
+  });
+  function openTestRecord(id) {
+    const pupil = state.pupils.find(p=>p.id===id);
+    if (!pupil || pupil.status === 'withdrawn') return;
+    recordingId=id;
+    $('test-form').reset(); $('test-error').hidden=true;
+    $('test-pupil-name').textContent=pupil.name+' さん';
+    $('record-date').value=state.testDate;
+    const next=C.nextGrade(pupil.grade);
+    $('record-grade').innerHTML=C.GRADES.slice(1).map(g=>`<option value="${g}"${g===(next || pupil.grade)?' selected':''}>${gradeLabel(g)}</option>`).join('');
+    updateTestContext(); $('test-dialog').showModal(); $('record-time').focus();
+  }
+  function updateTestContext() {
+    const pupil=state.pupils.find(p=>p.id===recordingId); if(!pupil) return;
+    const grade=$('record-grade').value, date=$('record-date').value;
+    const index=C.GRADES.indexOf(grade);
+    const r=C.calculate({...pupil,grade:C.GRADES[index-1]},date,rules);
+    $('test-context').innerHTML=`<strong>${esc(C.STROKES[r.stroke] || '日付・受験級を確認')}${r.distance ? ' '+r.distance+'m' : ''}</strong>${r.age ?? '—'}歳 · 規定 ${r.seconds===null ? esc(r.status || '—') : C.formatTime(r.seconds)}`;
+    const canPass=C.nextGrade(pupil.grade)===grade;
+    $('record-pass').disabled=!canPass;
+    if(!canPass) $('record-pass').checked=false;
+    $('save-test').textContent=$('record-pass').checked?'記録して合格にする':'タイムを保存する';
+    $('record-pass-label').textContent=`この記録で${gradeLabel(grade)}合格にする`;
+    $('record-pass-hint').textContent=canPass?'チェックしなければ、タイムだけを保存します。':'現在の合格級のひとつ先を選ぶと、合格も同時に記録できます。';
+    const recent=[...pupil.history].reverse().filter(h=>h.type==='test_recorded' && h.test.grade===grade).slice(0,3);
+    $('test-recent').textContent=recent.length?'この受験級の最近の記録\n'+recent.map(h=>`${h.date}　${C.formatMeasuredTime(h.test.seconds)}${h.note ? '　'+h.note : ''}`).join('\n'):'';
+  }
+  ['record-date','record-grade'].forEach(id=>$(id).addEventListener('change',updateTestContext));
+  $('record-pass').addEventListener('change', async ()=>{$('save-test').textContent=$('record-pass').checked?'記録して合格にする':'タイムを保存する';});
+  $('test-form').addEventListener('submit', async e=>{
+    e.preventDefault();
+    try {
+      const pupil=state.pupils.find(p=>p.id===recordingId);
+      if(!pupil) throw new Error('子どもの登録情報が見つかりません。');
+      const pass=$('record-pass').checked,date=$('record-date').value;
+      const changed=C.recordTest(pupil,$('record-grade').value,$('record-time').value,rules,{...historyContext(date),note:$('record-note').value.trim()},pass);
+      if(await commit({...state,pupils:state.pupils.map(p=>p.id===pupil.id?changed:p)})) {
+        if(pass) undo={type:'grade',id:pupil.id,name:pupil.name,from:pupil.grade,to:changed.grade,date};
+        render(); $('test-dialog').close(); toast(pass?'実測タイムを保存し、合格を記録しました。':'実測タイムを保存しました。編集画面の履歴でも確認できます。');
+      }
+    } catch(error) {$('test-error').textContent=error.message; $('test-error').hidden=false;}
+  });
+  document.querySelectorAll('[data-close]').forEach(button => button.addEventListener('click', async ()=> $(button.dataset.close).close()));
+  function openPupil(id) {
+    editing = id ? state.pupils.find(p => p.id === id) : null;
+    $('pupil-form').reset(); $('form-error').hidden = true; $('lifecycle-panel').hidden = true; $('profile-actions').hidden = false;
+    $('pupil-dialog-title').textContent = editing ? '子どもの情報を編集' : '子どもを追加';
+    $('pupil-id').value = editing?.id || '';
+    $('pupil-name').value = editing?.name || '';
+    $('pupil-birth').value = editing?.birthDate || '';
+    $('pupil-sex').value = editing?.sex || '';
+    $('pupil-group').value = editing?.group || selectedClass || '';
+    $('pupil-grade').innerHTML = gradeOptions(editing?.grade || '');
+    $('pupil-note').value = editing?.note || '';
+    $('lifecycle-actions').hidden = !editing;
+    $('transfer-button').hidden = $('withdraw-button').hidden = editing?.status === 'withdrawn';
+    $('rejoin-button').hidden = editing?.status !== 'withdrawn';
+    $('pupil-group').disabled = editing?.status === 'withdrawn';
+    $('pupil-status').textContent = editing?.status === 'withdrawn' ? '退会済み・記録を保管中' : editing ? '在籍中' : '新規登録';
+    $('history-section').hidden = !editing;
+    renderHistory(editing);
+    $('source-panel').hidden = !editing?.source;
+    $('source-review-label').hidden = !editing?.review;
+    $('source-reviewed').checked = false;
+    if (editing?.source) {
+      const s=editing.source;
+      $('source-detail').textContent = `${s.file} / ${s.sheet} / ${s.row}行目\n所属級 ${gradeLabel(s.grade)} ・ ${s.stroke} ${s.distance}m ・ 規定タイム ${s.time || 'なし'}${editing.review ? '\n元表の所属級と種目が基準表に一致していません。正しい合格級を確認してください。' : '\n取り込み時点の記録です。現在の計算結果とは日付や級により異なります。'}${s.confirmation ? '\n' + s.confirmation : ''}`;
+    }
+    updatePreview(); $('pupil-dialog').showModal();
+  }
+  $('add-button').addEventListener('click', async ()=> openPupil());
+  function renderClasses() {
+    $('class-list').innerHTML = groups().map(group => {
+      const count = activePupils().filter(p => p.group === group).length;
+      return `<div class="class-manager-row"><input value="${esc(group)}" maxlength="50" aria-label="${esc(group)}のクラス名"><span>${count}人</span><button class="button secondary" data-rename-class="${esc(group)}">変更</button><button class="text-button danger-text" data-delete-class="${esc(group)}" ${count ? 'disabled title="在籍中の子どもを移動すると削除できます"' : ''}>削除</button></div>`;
+    }).join('') || '<p class="small">まだクラスがありません。下の欄から追加できます。</p>';
+  }
+  $('manage-classes').addEventListener('click', async ()=> {
+    $('class-error').hidden = true; $('class-name').value = ''; renderClasses(); $('class-dialog').showModal();
+  });
+  $('class-form').addEventListener('submit', async e=> {
+    e.preventDefault();
+    try {
+      if (await commit(C.addClass(state, $('class-name').value))) {
+        $('class-name').value = ''; $('class-error').hidden = true; renderClasses(); toast('クラスを追加しました。');
+      }
+    } catch (error) {$('class-error').textContent = error.message; $('class-error').hidden = false;}
+  });
+  $('class-list').addEventListener('click', async e=> {
+    const rename = e.target.closest('[data-rename-class]'), remove = e.target.closest('[data-delete-class]');
+    if (!rename && !remove) return;
+    try {
+      const oldName = rename?.dataset.renameClass || remove.dataset.deleteClass;
+      const name = rename ? rename.closest('.class-manager-row').querySelector('input').value.trim() : '';
+      const next = rename ? C.renameClass(state, oldName, name, historyContext()) : C.removeClass(state, oldName);
+      const wasSelected = selectedClass === oldName;
+      if (await commit(next)) {
+        if (rename && wasSelected) selectedClass = name;
+        undo = null; render(); renderClasses(); $('class-error').hidden = true;
+        toast(rename ? 'クラス名を変更しました。' : '空のクラスを削除しました。');
+      }
+    } catch (error) {$('class-error').textContent = error.message; $('class-error').hidden = false;}
+  });
+  function formPupil() {
+    return {...editing, id:editing?.id || (globalThis.crypto?.randomUUID?.() || `p-${Date.now()}-${Math.random().toString(36).slice(2)}`), name:$('pupil-name').value.trim(), birthDate:$('pupil-birth').value, sex:$('pupil-sex').value, group:$('pupil-group').value.trim(), grade:$('pupil-grade').value, note:$('pupil-note').value.trim(), source:editing?.source || null, status:editing?.status || 'active', history:editing?.history || [], review:Boolean(editing?.review && !$('source-reviewed').checked)};
+  }
+  function updatePreview() {
+    $('pupil-preview').hidden = editing?.status === 'withdrawn';
+    const p={birthDate:$('pupil-birth').value,sex:$('pupil-sex').value,grade:$('pupil-grade').value};
+    if (!p.birthDate || !p.grade || !p.sex) {$('pupil-preview').textContent='生年月日・性別・合格級を入力すると、次回のテストが表示されます。'; return;}
+    const r=C.calculate(p,state.testDate,rules);
+    $('pupil-preview').innerHTML=`次回：${r.next ? gradeLabel(r.next) : '基準未登録'} / ${r.age ?? '—'}歳<strong>${esc(C.STROKES[r.stroke] || '種目未登録')}${r.distance ? ` ${r.distance}m` : ''}　${C.formatTime(r.seconds)}</strong>${esc(r.status)}`;
+  }
+  ['pupil-birth','pupil-sex','pupil-grade'].forEach(id => $(id).addEventListener('input', updatePreview));
+  $('pupil-form').addEventListener('submit', async e=> {
+    e.preventDefault();
+    try {
+      if (!$('lifecycle-panel').hidden) throw new Error('手続き欄の確定ボタンで移動・退会・再入会を完了してください。');
+      let pupil=formPupil();
+      if (!pupil.name || !pupil.group) throw new Error('氏名と所属クラスを入力してください。');
+      if (pupil.birthDate > state.testDate) throw new Error('生年月日がテスト日より後です。日付を確認してください。');
+      if (!editing) pupil = C.recordPupil(pupil, {...historyContext(),type:'registered',to:pupil.group,detail:`合格級 ${gradeLabel(pupil.grade)}`});
+      else {
+        if (editing.group !== pupil.group) pupil = C.transferPupil({...pupil,group:editing.group},pupil.group,historyContext());
+        if (editing.grade !== pupil.grade) pupil = C.recordPupil(pupil,{...historyContext(),type:'grade_changed',from:editing.grade,to:pupil.grade});
+        const fields = [['name','氏名'],['birthDate','生年月日'],['sex','性別'],['note','メモ'],['review','確認状態']].filter(([key])=>editing[key]!==pupil[key]).map(([,label])=>label);
+        if (fields.length) pupil = C.recordPupil(pupil,{...historyContext(),type:'profile_updated',detail:fields.join('・')+'を更新'});
+      }
+      const pupils=editing ? state.pupils.map(p => p.id===editing.id ? pupil : p) : [...state.pupils,pupil];
+      const next=C.validateBackup({...state,pupils});
+      if (await commit(next)) {$('pupil-dialog').close(); toast(editing ? '情報を更新しました。' : '子どもを追加しました。');}
+    } catch (error) {$('form-error').textContent=error.message; $('form-error').hidden=false;}
+  });
+  function renderHistory(pupil) {
+    const labels={registered:'登録',passed:'合格',grade_changed:'合格級の修正',transferred:'クラス移動',class_renamed:'クラス名の変更',withdrawn:'退会',rejoined:'再入会',profile_updated:'登録情報の変更',pass_reverted:'合格の取り消し',withdraw_reverted:'退会の取り消し',test_recorded:'実測タイム'};
+    $('history-list').innerHTML = pupil?.history?.length ? [...pupil.history].reverse().map(h => {
+      const grades = ['passed','grade_changed','pass_reverted'].includes(h.type);
+      const from = grades ? gradeLabel(h.from) : h.from, to = grades ? gradeLabel(h.to) : h.to;
+      const change = from && to ? `${from} → ${to}` : from || to;
+      const recorded = new Date(h.at).toLocaleString('ja-JP',{year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'});
+      return `<li><div><strong>${labels[h.type]}</strong><time>${esc(h.date)}</time></div>${change ? `<p>${esc(change)}</p>` : ''}${h.test ? `<p class="history-time">${C.formatMeasuredTime(h.test.seconds)}</p><p>${gradeLabel(h.test.grade)} · ${esc(C.STROKES[h.test.stroke])} ${h.test.distance}m</p><p class="small">当日 ${h.test.age}歳 · 規定 ${C.formatTime(h.test.standardSeconds)}</p>` : ''}${h.detail ? `<p class="small">${esc(h.detail)}</p>` : ''}${h.note ? `<p class="history-note">${esc(h.note)}</p>` : ''}<small>記録日時 ${esc(recorded)}</small></li>`;
+    }).join('') : '<li class="small">まだ操作履歴がありません。今後の合格・移動・退会などを記録します。</li>';
+  }
+  function openLifecycle(action) {
+    if (!editing) return;
+    const form = formPupil();
+    if (['name','birthDate','sex','group','grade','note','review'].some(key=>form[key]!==editing[key])) {
+      $('form-error').textContent='編集中の情報を先に「保存する」で確定してください。'; $('form-error').hidden=false; return;
+    }
+    lifecycleAction=action; $('form-error').hidden=true;
+    $('lifecycle-title').textContent=action==='withdraw' ? `${editing.name} さんの退会` : action==='transfer' ? 'クラスを移動する' : '再入会する';
+    $('lifecycle-description').textContent=action==='withdraw' ? '在籍名簿から外し、合格級・生年月日・履歴を保管します。' : action==='transfer' ? '合格級と履歴を引き継いで移動します。' : '以前の合格級と履歴を引き継いで在籍名簿へ戻します。';
+    $('lifecycle-class-label').hidden=action==='withdraw';
+    $('lifecycle-class').innerHTML='<option value="">クラスを選択</option>'+groups().filter(g=>action!=='transfer' || g!==editing.group).map(g=>`<option value="${esc(g)}">${esc(g)}</option>`).join('');
+    if(action==='rejoin' && groups().includes(editing.group)) $('lifecycle-class').value=editing.group;
+    $('lifecycle-date').value=today(); $('lifecycle-date').max=today(); $('lifecycle-note').value='';
+    $('lifecycle-confirm').textContent=action==='withdraw' ? '退会として保管する' : action==='transfer' ? '移動を確定する' : '再入会を確定する';
+    $('lifecycle-panel').hidden=false; $('profile-actions').hidden=true; $('lifecycle-date').focus();
+  }
+  $('withdraw-button').addEventListener('click', async ()=>openLifecycle('withdraw'));
+  $('transfer-button').addEventListener('click', async ()=>openLifecycle('transfer'));
+  $('rejoin-button').addEventListener('click', async ()=>openLifecycle('rejoin'));
+  $('lifecycle-cancel').addEventListener('click', async ()=>{$('lifecycle-panel').hidden=true; $('lifecycle-date').value=''; $('form-error').hidden=true; $('profile-actions').hidden=false;});
+  $('lifecycle-confirm').addEventListener('click', async ()=>{
+    try {
+      const form=formPupil();
+      if(['name','birthDate','sex','group','grade','note','review'].some(key=>form[key]!==editing[key])) throw new Error('登録情報が編集中です。手続きをキャンセルし、先に「保存する」で確定してください。');
+      const date=$('lifecycle-date').value;
+      if(!C.dateParts(date) || date>today() || date<editing.birthDate) throw new Error('手続き日には生年月日以降・今日以前の日付を入力してください。');
+      const context={...historyContext(date),note:$('lifecycle-note').value.trim()};
+      const pupil=lifecycleAction==='withdraw' ? C.withdrawPupil(editing,context) : lifecycleAction==='transfer' ? C.transferPupil(editing,$('lifecycle-class').value,context) : C.rejoinPupil(editing,$('lifecycle-class').value,context);
+      if(await commit(C.validateBackup({...state,pupils:state.pupils.map(p=>p.id===editing.id?pupil:p)}))) {
+        undo=lifecycleAction==='withdraw'?{type:'withdraw',id:pupil.id,name:pupil.name,date}:null;
+        render(); $('pupil-dialog').close(); toast(lifecycleAction==='withdraw'?'退会した子の一覧へ移し、記録を保管しました。':lifecycleAction==='transfer'?'クラスを移動し、履歴を記録しました。':'再入会を記録しました。');
+      }
+    } catch(error){$('form-error').textContent=error.message;$('form-error').hidden=false;}
+  });
+  $('undo-button').addEventListener('click', async ()=> {
+    if (!undo) return;
+    try {
+    if (undo.type === 'grade') {
+      const pupil = state.pupils.find(p => p.id === undo.id);
+      if (!pupil || pupil.grade !== undo.to) {toast('その後に情報が変更されたため取り消せません。'); return;}
+      const changed=C.recordPupil({...pupil,grade:undo.from},{...historyContext(undo.date),type:'pass_reverted',from:undo.to,to:undo.from});
+      if (await commit({...state, pupils: state.pupils.map(p => p.id === undo.id ? changed : p)})) {
+        undo = null; render(); toast('合格の記録を取り消しました。');
+      }
+      return;
+    }
+    const pupil=state.pupils.find(p=>p.id===undo.id);
+    if(!pupil || pupil.status!=='withdrawn'){toast('すでに在籍状態が変更されています。');return;}
+    const changed=C.recordPupil({...pupil,status:'active'},{...historyContext(undo.date),type:'withdraw_reverted',to:pupil.group});
+    if (await commit(C.validateBackup({...state,pupils:state.pupils.map(p=>p.id===undo.id?changed:p)}))) {undo=null; render(); toast('退会を取り消しました。履歴は保持しています。');}
+    } catch(error) {toast(error.message);}
+  });
+  function download(content, filename, type) {
+    const url=URL.createObjectURL(new Blob([content],{type}));
+    const a=document.createElement('a'); a.href=url; a.download=filename; document.body.append(a); a.click(); a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),30000);
+  }
+  function backup() {
+    download(JSON.stringify({...(pendingWrite?.state||state),exportedAt:new Date().toISOString()},null,2),'スイムノート_バックアップ_'+today()+'.json','application/json');
+    toast('バックアップを作成しました。ダウンロード先を確認してください。');
+  }
+  ['backup-button','help-backup'].forEach(id=>$(id).addEventListener('click',backup));
+  ['import-button','empty-import','help-import'].forEach(id=>$(id).addEventListener('click', async ()=>{$('import-file').value=''; $('import-file').click();}));
+  $('import-file').addEventListener('change', async () => {
+    const file=$('import-file').files[0]; if (!file) return;
+    try {
+      if (file.size>20*1024*1024) throw new Error('ファイルが大きすぎます。20MB以下のJSONを選んでください。');
+      const raw=JSON.parse(await file.text());
+      pendingImport=C.validateBackup(raw);
+      if(raw.menuCards==null)delete pendingImport.menuCards;
+      if(raw.lessons==null)delete pendingImport.lessons;
+      const archived=pendingImport.pupils.filter(p=>p.status==='withdrawn').length;
+      $('import-description').textContent=`「${file.name}」から在籍 ${pendingImport.pupils.length-archived}人・退会 ${archived}人の情報と履歴を反映します。`;
+      const counts=new Map(pendingImport.classes.map(g => [g,0])); pendingImport.pupils.filter(p=>p.status==='active').forEach(p=>counts.set(p.group,(counts.get(p.group)||0)+1));
+      $('import-groups').textContent=[...counts].map(([g,n])=>`${g || '未所属'}：${n}人`).join(' / ') || '空の名簿';
+      document.querySelector('input[name="import-mode"][value="merge"]').checked=true;
+      $('import-error').hidden=true;
+      updateImportImpact(); $('import-dialog').showModal();
+    } catch (error) {toast(error instanceof SyntaxError ? 'JSONを開けませんでした。アプリのバックアップファイルを選んでください。' : error.message);}
+  });
+  function importMode() {return document.querySelector('input[name="import-mode"]:checked').value;}
+  function updateImportImpact() {
+    if (!pendingImport) return;
+    const matches=pendingImport.pupils.filter(p=>state.pupils.some(old=>old.id===p.id)).length;
+    const mode=importMode();
+    $('import-impact').textContent=mode==='replace' ? `退会した子・履歴も含め、今の${state.pupils.length}人を${pendingImport.pupils.length}人のデータで置き換えます。テスト日もバックアップに合わせます。` : `${pendingImport.pupils.length-matches}人を追加、${matches}人を更新します。同じIDの登録情報・在籍状態はファイルの値に更新し、履歴は両方を保管します。現在のテスト日は維持します。IDが異なる同名の子どもは別の登録として扱います。`;
+  }
+  $('import-mode').addEventListener('change',updateImportImpact);
+  $('confirm-import').addEventListener('click', async ()=>{
+    if (!pendingImport) return;
+    try {
+      const next=C.importBackup(state,pendingImport,importMode());
+      if (await commit(next,{restore:true})) {undo=null; selectedClass=''; search=''; onlyReview=false; $('search').value=''; render(); $('import-dialog').close(); view('roster'); toast(`${pendingImport.pupils.length}人分のデータを反映しました。テスト日を確認してください。`); pendingImport=null;}
+    } catch(error) {$('import-error').textContent=error.message; $('import-error').hidden=false;}
+  });
+  $('csv-button').addEventListener('click', async ()=>{
+    const rows=[['テスト日','氏名','生年月日','クラス','学年','年齢','性別','合格級','次の受験級','テスト種目','距離(m)','規定タイム','実測タイム','確認事項','結果']];
+    visiblePupils().forEach(p=>{const r=C.calculate(p,state.testDate,rules); rows.push([state.testDate,p.name,p.birthDate,p.group,r.school,r.age,p.sex==='male'?'男':p.sex==='female'?'女':'未登録',gradeLabel(p.grade),r.next?gradeLabel(r.next):'',C.STROKES[r.stroke]||'',r.distance,r.seconds===null?'':C.formatTime(r.seconds),C.latestTest(p,state.testDate,r.next) ? C.formatMeasuredTime(C.latestTest(p,state.testDate,r.next).test.seconds) : '',[p.review?'元表の級・種目を確認（計算値は参考）':'',r.status].filter(Boolean).join(' / '),'']);});
+    download('\ufeff'+rows.map(row=>row.map(C.csvCell).join(',')).join('\r\n'),'テスト一覧_'+state.testDate+'.csv','text/csv;charset=utf-8');
+  });
+  $('print-button').addEventListener('click', async ()=>window.print());
+  function renderRules() {
+    const sex=$('rule-sex').value;
+    $('rules-body').innerHTML=rules.map(r=>`<tr><td><strong>${gradeLabel(r.grade)}</strong></td><td>${esc(C.STROKES[r.stroke])}</td><td>${r.distance}m</td>${r[sex].map(t=>`<td>${C.formatTime(t)}</td>`).join('')}</tr>`).join('');
+  }
+  $('rule-sex').addEventListener('change',renderRules);
+  practice=SwimPractice.mount({getState:()=>state,commit,toast,today,esc});
+  render(); renderRules();lock(SwimCloud.validEndpoint(config.apiUrl)?'IDとパスワードでログインしてください。':'Google側の接続設定が未完了です。管理者用の導入手順を確認してください。');
+})();
+</script>
+</body>
+</html>

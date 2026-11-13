@@ -1,0 +1,23 @@
+{
+  "name": "swim-note",
+  "version": "1.0.0",
+  "description": "Swim school roster and lesson planning with Google Sheets",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "test": "node --test tests/*.test.cjs",
+    "check": "node tools/check-public.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@noble/hashes": "2.0.1",
+    "esbuild": "0.25.11",
+    "jsdom": "27.2.0"
+  },
+  "private": true
+}

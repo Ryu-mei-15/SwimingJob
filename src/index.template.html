@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; font-src 'none'; object-src 'none'; base-uri 'none'; frame-src https://script.google.com https://*.googleusercontent.com; form-action https://script.google.com https://*.googleusercontent.com">
+  <meta name="referrer" content="no-referrer">
+  <title>スイムノート｜進級テスト管理</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%232162c5'/%3E%3Cpath d='M7 16q6 6 13 0t13 0M7 25q6 6 13 0t13 0' fill='none' stroke='white' stroke-width='3'/%3E%3C/svg%3E">
+  <style>__STYLES__</style>
+</head>
+<body>
+<noscript>このアプリを使うには、ブラウザでJavaScriptを有効にしてください。</noscript>
+<section id="auth-screen" class="auth-screen" aria-labelledby="login-heading">
+  <div class="auth-card"><div class="auth-logo">≋</div><p class="eyebrow">SWIM NOTE</p><h1 id="login-heading">スイムノート</h1><p class="subtitle">テストの記録と、次のレッスンをひとつに。</p>
+  <form id="login-form"><label>ID<input id="login-id" autocomplete="username" required maxlength="100"></label><label>パスワード<input id="login-password" type="password" autocomplete="current-password" required maxlength="256"></label><button id="login-button" class="button primary" type="submit">ログイン</button></form>
+  <p id="login-message" class="login-message" role="status">IDとパスワードでログインしてください。</p><p class="auth-note">10分間操作がない場合は自動ログアウトします。</p></div>
+</section>
+<div id="busy-panel" class="busy-panel" role="status" hidden>Googleスプレッドシートに保存しています…</div>
+
+<header class="app-header" hidden>
+  <a class="brand" href="#roster" aria-label="スイムノート ホーム"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M7 15q6 6 13 0t13 0M7 25q6 6 13 0t13 0"/></svg></span><span>スイムノート<small>進級テスト管理</small></span></a>
+  <nav class="header-nav" aria-label="メインメニュー"><button class="nav-item active" data-view="roster">テスト名簿</button><button class="nav-item" data-view="practice">練習メニュー</button><button class="nav-item" data-view="archive">退会した子 <span id="archive-count" class="nav-count">0</span></button><button class="nav-item" data-view="rules">進級基準表</button><button class="nav-item" data-view="help">使い方</button></nav>
+  <div class="header-actions"><span class="local-badge"><span></span>Google保存</span><button id="import-button" class="button quiet">データを開く</button><button id="backup-button" class="button secondary">↓ バックアップ</button><span id="signed-in-user" class="signed-in-user"></span><button id="logout-button" class="text-button">ログアウト</button></div>
+</header>
+<div class="app-shell" hidden>
+  <main>
+    <div id="storage-alert" class="notice danger" role="alert" hidden></div><div id="sync-actions" class="sync-actions" hidden><button id="retry-save" class="button primary">保存を再試行</button><button id="refresh-data" class="button secondary">最新を取得</button></div>
+    <section id="view-roster" class="view" aria-labelledby="roster-heading">
+      <div class="page-heading"><div><h1 id="roster-heading">テスト名簿</h1></div><div class="page-actions no-print"><button id="add-button" class="button secondary">＋ 子どもを追加</button><button id="print-button" class="button primary"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V3h10v5M7 17H4V9h16v8h-3M7 14h10v7H7zM17 11h1"/></svg>名簿を印刷</button></div></div>
+      <div class="overview">
+        <div class="date-block"><label for="test-date">次回のテスト日</label><input id="test-date" type="date" min="1900-01-01" max="2200-12-31" required><span>この日の満年齢で判定</span></div>
+        <div class="overview-item"><strong id="total-count">0<small>人</small></strong><span>登録済み</span></div>
+        <div class="overview-item"><strong id="class-count">0<small>クラス</small></strong></div>
+        <button id="review-filter" class="overview-item review-filter" aria-pressed="false"><span>要確認</span><strong id="review-count">0<small>人</small></strong></button>
+      </div>
+      <div class="class-section no-print"><div class="section-label"><span>クラスを選択</span><button id="manage-classes" class="text-button">＋ クラス管理</button></div><div id="class-tabs" class="class-tabs" role="group" aria-label="クラスで絞り込み"></div></div>
+      <div class="roster-panel">
+        <div class="list-heading no-print"><div><h2 id="list-heading">すべてのテスト名簿</h2><span id="list-count">0人</span></div><label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><input id="search" type="search" placeholder="名前・クラスを検索" aria-label="名前・クラスを検索"></label></div>
+        <div class="table-caption"><span id="table-description">名簿を登録してください</span><div class="table-tools"><span class="hundred-legend"><b>★ 100m</b> <span id="hundred-count">0</span>人</span><span class="sort-label">級が高い順 ↓</span><button id="csv-button" class="text-button no-print">CSV出力</button></div></div>
+        <p id="filter-notice" class="filter-notice" hidden></p>
+        <div id="empty-state" class="empty-state"><div class="empty-mark" aria-hidden="true">▦</div><h2 id="empty-heading">最初の名簿を登録しましょう</h2><p id="empty-copy">以前のアプリのバックアップJSONを開くか、子どもを追加してください。</p><button id="empty-import" class="button primary">名簿データを開く</button><p class="small">「子どもを追加」から、1人ずつ登録することもできます。</p></div>
+        <div id="table-container" class="table-scroll" hidden><table class="roster-table"><thead><tr><th scope="col">氏名 / 学年<span class="print-only birth-heading"> / 生年月日</span></th><th scope="col">クラス</th><th scope="col">性別</th><th scope="col">年齢</th><th scope="col">合格済みの級</th><th scope="col">次の受験級</th><th scope="col">テスト種目</th><th scope="col">距離</th><th scope="col">規定タイム</th><th scope="col" class="no-print">合格 / タイム / 編集</th><th scope="col" class="print-only">結果</th></tr></thead><tbody id="roster-body"></tbody></table></div>
+        <div id="no-results" class="empty-state" hidden><h2>条件に合う子どもがいません</h2><p>検索文字やクラスの絞り込みを変更してください。</p><button id="clear-filters" class="button secondary">絞り込みを解除</button></div>
+        <div class="table-footer"><span>「合格」で1段階進級。「タイム」で実測を記録できます（任意）。</span><span id="save-status" role="status">まだ名簿は登録されていません</span></div>
+      </div>
+      <p class="footnote no-print">★ 100mの行は印刷でも目印付き。タイムは「分:秒.小数」、タイム規定なしは「—」で表示します。</p>
+      <div id="undo-panel" class="undo-panel no-print" hidden><span id="undo-text"></span><button id="undo-button" class="text-button">元に戻す</button></div>
+    </section>
+    <section id="view-practice" class="view" hidden aria-labelledby="practice-heading">
+  <div class="page-heading"><div><h1 id="practice-heading">練習メニュー</h1><p class="subtitle">いつもの練習を選んで、レッスンの時間に合わせる。</p></div><div class="page-actions"><button id="new-lesson" class="button secondary">新しいレッスン</button><button id="preview-lesson" class="button primary">プレビュー</button></div></div>
+  <div class="practice-workspace"><aside class="menu-library-panel"><div class="panel-heading"><h2>練習カード</h2><button id="create-menu-card" class="text-button">＋ カードを作成</button></div><input id="menu-search" type="search" placeholder="カードを検索" aria-label="練習カードを検索"><p class="small">所要時間には説明・休憩も含めて設定してください。</p><div id="menu-library" class="menu-library"></div></aside>
+  <section class="lesson-editor"><div class="lesson-load"><select id="lesson-list" aria-label="保存したレッスン"><option value="">保存したレッスン</option></select><button id="delete-lesson" class="text-button danger-text">削除</button></div>
+  <div class="form-grid lesson-fields"><label class="full">レッスン名<input id="lesson-title" maxlength="100"></label><label>実施日<input id="lesson-date" type="date"></label><label>クラス<input id="lesson-group" list="group-options" maxlength="50" placeholder="例：J2"></label><label>開始時刻<input id="lesson-start" type="time"></label><label>レッスン時間（分）<input id="lesson-minutes" type="number" min="5" max="240" step="1"></label></div>
+  <div class="lesson-budget"><div><span>練習の合計</span><strong id="lesson-used">0分</strong></div><strong id="lesson-remaining">残り60分</strong><span id="lesson-distance">0m</span><progress id="lesson-meter" max="3600" value="0"></progress></div>
+  <ol id="lesson-items" class="lesson-items"></ol><label class="lesson-note-label">レッスン全体のメモ<textarea id="lesson-note" rows="2" maxlength="2000"></textarea></label>
+  <div class="lesson-save"><span id="lesson-dirty" class="small"></span><div><button id="copy-lesson" class="button secondary">別のレッスンとして保存</button><button id="save-lesson" class="button primary">保存する</button></div></div></section></div>
+</section>
+
+    <section id="view-archive" class="view" hidden aria-labelledby="archive-heading"><div class="page-heading"><div><h1 id="archive-heading">退会した子</h1><p id="archive-summary" class="subtitle"></p></div><label class="search-box"><input id="archive-search" type="search" placeholder="名前・最終クラスを検索" aria-label="退会した子を検索"></label></div><p class="notice">退会前の情報と操作履歴を保管しています。再入会するときは「記録・再入会」からクラスを選んでください。</p><div class="roster-panel"><div id="archive-empty" class="empty-state"><h2>該当する記録はありません</h2><p>退会の手続きをした子どもがここに表示されます。</p></div><div id="archive-table" class="table-scroll" hidden><table class="archive-table"><thead><tr><th>氏名</th><th>最終クラス</th><th>合格級</th><th>退会日</th><th>退会時のメモ</th><th>操作</th></tr></thead><tbody id="archive-body"></tbody></table></div></div></section>
+    <section id="view-rules" class="view" hidden aria-labelledby="rules-heading">
+      <p class="eyebrow">TEST STANDARDS</p><h1 id="rules-heading">進級基準表</h1><p class="subtitle">合格級のひとつ先が、次の受験級です。</p>
+      <div class="notice">7級 → 6級は個人メドレー100m・タイム規定なし。6級 → 5級 → … → 1級 → 1段 → … → 10段の順に進みます。</div>
+      <div class="rule-controls no-print"><label for="rule-sex">基準表</label><select id="rule-sex"><option value="male">男子</option><option value="female">女子</option></select><span>タイムの年齢はテスト当日の満年齢</span></div>
+      <div class="roster-panel table-scroll"><table class="rules-table"><thead><tr><th>受験級</th><th>種目</th><th>距離</th><th>8歳</th><th>9歳</th><th>10歳</th><th>11歳</th><th>12歳</th><th>13〜14歳</th><th>15歳以上</th></tr></thead><tbody id="rules-body"></tbody></table></div>
+      <p class="footnote">出典：D5.xlsx・D7.xlsx・J.xlsx のPreferenceシート（3冊の規定タイムは一致）。8歳未満のタイム基準、7級より前の級、10段合格後の基準は資料にないため、自動補完しません。</p>
+    </section>
+    <section id="view-help" class="view" hidden aria-labelledby="help-heading">
+      <p class="eyebrow">GUIDE & DATA</p><h1 id="help-heading">使い方・データ管理</h1><p class="subtitle">開いて、更新して、次回のテストへ。</p>
+      <div class="guide-grid"><article class="guide-card"><span class="step">01</span><h2>最初に名簿を開く</h2><p>「データを開く」で以前のアプリのバックアップJSONを選びます。Googleスプレッドシートへ名簿と履歴を移せます。</p><button id="help-import" class="button secondary">データを開く</button></article>
+      <article class="guide-card"><span class="step">02</span><h2>合格したら、ボタンひとつ</h2><p>テスト日を指定し、最後に合格した級を選びます。「合格」を押すと1段階進級し、次回の種目・距離・タイムが更新されます。タイムも残す場合は「タイム」から実測を入力します。記録だけの保存や、記録と同時に合格にする操作もできます。直前の合格は「元に戻す」で取り消せます。一覧は上位の級・段から自動で並びます。</p></article>
+      <article class="guide-card"><span class="step">03</span><h2>移動・退会・再入会を記録</h2><p>「編集」から日付・メモを付けてクラス移動や退会を記録できます。退会後も合格級や履歴を保管し、「退会した子」から再入会できます。「クラス管理」ではクラスの追加・名称変更・空のクラスの削除ができます。</p></article>
+      <article class="guide-card"><span class="step">04</span><h2>履歴ごとバックアップ</h2><p>実測タイム・合格・級の修正・クラス移動・退会・再入会は、子どもごとの操作履歴に残ります。バックアップJSONには退会した子と履歴も含まれます。CSVには表示中の受験級とテスト日に一致する最新の実測タイムも含まれます。復元にはJSONを使ってください。</p><button id="help-backup" class="button secondary">バックアップ保存</button></article></div>
+      <div class="guide-card storage-guide"><h2>Googleへの保存とログイン</h2><p>名簿・履歴・練習カード・レッスンはGoogleスプレッドシートに保存します。インターネット接続が必要です。保存中は画面に表示し、通信が失敗した場合は再試行できます。別のPCの変更と重なったときは、上書きせず最新のデータを確認します。</p><p>10分間操作がないと自動ログアウトします。タブを閉じた後や画面更新後も再ログインしてください。ログアウト時には個人情報と未保存の入力を画面から消します。</p><h2>以前の名簿を移す</h2><p>以前のアプリでバックアップJSONを保存し、「データを開く」から選んで反映します。初期データやバックアップJSONをGitHubへアップロードする必要はありません。</p><h2>練習メニュー</h2><p>カードを作り、必要な順に追加します。項目ごとの予定時間・順序を調整すると、合計・残り時間・距離と開始／終了時刻が更新されます。上限を超えているレッスンは保存前に時間を調整してください。「プレビュー」からメニューの確認・印刷ができます。</p><p>カードの変更・削除は、作成済みのレッスンには反映しません。レッスンは保存時の内容を保持します。</p><h2>バックアップ</h2><p>JSONには退会した子・全履歴・練習カード・レッスンも含まれます。保存先はスクールで管理してください。学年は通常の4月2日〜翌年4月1日の区切りで計算します。</p></div>
+    </section>
+  </main>
+</div>
+<input id="import-file" type="file" accept=".json,application/json" hidden>
+<datalist id="group-options"></datalist>
+<dialog id="test-dialog" aria-labelledby="test-dialog-title">
+  <form id="test-form">
+    <div class="dialog-heading"><div><p id="test-pupil-name" class="profile-status"></p><h2 id="test-dialog-title">実測タイムを記録</h2><p class="small">テストの記録を、次の練習へ。</p></div><button type="button" data-close="test-dialog" class="close-button" aria-label="閉じる">×</button></div>
+    <div class="form-grid"><label>テスト日<input id="record-date" type="date" min="1900-01-01" max="2200-12-31" required></label><label>受験級<select id="record-grade" required></select></label></div>
+    <div id="test-context" class="test-context" aria-live="polite"></div>
+    <label class="test-time-label">実測タイム<input id="record-time" type="text" inputmode="text" maxlength="12" placeholder="1:23.45" autocomplete="off" required aria-describedby="record-time-help"><small id="record-time-help">分:秒（1:23.45）または秒（83.45）で入力。小数は2桁まで。</small></label>
+    <label class="test-note-label">メモ（任意）<textarea id="record-note" rows="2" maxlength="1000" placeholder="泳ぎの様子・次回に向けたメモなど"></textarea></label>
+    <label class="test-pass-label"><input id="record-pass" type="checkbox"><span id="record-pass-label">この記録で合格にする</span></label><p id="record-pass-hint" class="test-pass-hint"></p>
+    <p id="test-recent" class="test-recent"></p><p id="test-error" class="form-error" role="alert" hidden></p>
+    <div class="dialog-actions test-dialog-actions"><button type="button" data-close="test-dialog" class="button secondary">キャンセル</button><button type="submit" id="save-test" class="button primary">タイムを保存する</button></div>
+  </form>
+</dialog>
+<dialog id="class-dialog" aria-labelledby="class-dialog-title"><div class="dialog-heading"><div><h2 id="class-dialog-title">クラス管理</h2><p class="small">クラス名を変更すると、在籍する子どもにも反映されます。</p></div><button type="button" data-close="class-dialog" class="close-button" aria-label="閉じる">×</button></div><div id="class-list"></div><form id="class-form" class="class-add-form"><label for="class-name">新しいクラス</label><div><input id="class-name" placeholder="例：J3" maxlength="50" required autocomplete="off"><button class="button primary" type="submit">＋ 追加</button></div></form><p id="class-error" class="form-error" role="alert" hidden></p><p class="small">在籍中の子どもがいるクラスは、子どもを移動すると削除できます。</p><div class="dialog-actions"><span></span><button type="button" data-close="class-dialog" class="button secondary">閉じる</button></div></dialog>
+<dialog id="pupil-dialog" aria-labelledby="pupil-dialog-title">
+  <form id="pupil-form">
+    <div class="dialog-heading"><div><p id="pupil-status" class="profile-status">新規登録</p><h2 id="pupil-dialog-title">子どもを追加</h2></div><button type="button" data-close="pupil-dialog" class="close-button" aria-label="閉じる">×</button></div>
+    <input id="pupil-id" type="hidden">
+    <div class="form-grid"><label class="full">氏名 <span class="required">必須</span><input id="pupil-name" required maxlength="100" autocomplete="off" placeholder="氏名を入力"></label><label>生年月日 <span class="required">必須</span><input id="pupil-birth" type="date" required min="1900-01-01" max="2200-12-31"></label><label>性別 <span class="required">必須</span><select id="pupil-sex" required><option value="">選択してください</option><option value="male">男</option><option value="female">女</option></select></label><label>所属クラス <span class="required">必須</span><input id="pupil-group" list="group-options" required maxlength="50" autocomplete="off" placeholder="例：D5"></label><label>合格級 <span class="required">必須</span><select id="pupil-grade" required></select></label><label class="full">メモ <span class="optional">任意</span><textarea id="pupil-note" rows="2" maxlength="1000" placeholder="指導上の申し送りなど"></textarea></label></div>
+    <div id="pupil-preview" class="pupil-preview" aria-live="polite"></div>
+    <div id="lifecycle-actions" class="lifecycle-actions" hidden><button id="transfer-button" type="button" class="button secondary">クラス移動</button><button id="withdraw-button" type="button" class="button quiet danger-text">退会として保管</button><button id="rejoin-button" type="button" class="button primary" hidden>再入会する</button></div>
+    <section id="lifecycle-panel" class="lifecycle-panel" hidden><h3 id="lifecycle-title"></h3><p id="lifecycle-description" class="small"></p><label id="lifecycle-class-label">移動先・再入会先のクラス<select id="lifecycle-class"></select></label><label>手続き日<input id="lifecycle-date" type="date" min="1900-01-01"></label><label>メモ（任意）<textarea id="lifecycle-note" rows="2" maxlength="1000" placeholder="移動や退会の理由・申し送りなど"></textarea></label><div><button id="lifecycle-confirm" type="button" class="button primary">確定する</button><button id="lifecycle-cancel" type="button" class="button secondary">キャンセル</button></div></section>
+    <details id="history-section" class="history-section" hidden open><summary>操作履歴 <span>新しい記録から表示</span></summary><ol id="history-list"></ol></details>
+    <div id="source-panel" class="source-panel" hidden><strong>元の一覧表の記録</strong><p id="source-detail"></p><label id="source-review-label"><input id="source-reviewed" type="checkbox">元表との相違を確認済み</label></div>
+    <p id="form-error" class="form-error" role="alert" hidden></p>
+    <div id="profile-actions" class="dialog-actions"><span></span><div><button type="button" data-close="pupil-dialog" class="button secondary">キャンセル</button><button type="submit" class="button primary">保存する</button></div></div>
+  </form>
+</dialog>
+<dialog id="import-dialog" aria-labelledby="import-title"><div class="dialog-heading"><div><p class="eyebrow">IMPORT DATA</p><h2 id="import-title">名簿を開く</h2></div><button type="button" data-close="import-dialog" class="close-button" aria-label="閉じる">×</button></div><p id="import-description"></p><p id="import-groups" class="notice"></p><fieldset id="import-mode"><legend>今の名簿への反映方法</legend><label><input type="radio" name="import-mode" value="merge" checked>追加・更新する <small>同じIDの登録情報・在籍状態を更新し、履歴は両方を保管します。</small></label><label><input type="radio" name="import-mode" value="replace">名簿全体を入れ替える <small>退会した子・履歴も含め、ファイルの内容で置き換えます。</small></label></fieldset><p id="import-impact" class="small"></p><p id="import-error" class="form-error" role="alert" hidden></p><div class="dialog-actions"><span></span><div><button type="button" data-close="import-dialog" class="button secondary">キャンセル</button><button id="confirm-import" class="button primary">反映する</button></div></div></dialog>
+<dialog id="menu-card-dialog" aria-labelledby="menu-card-heading"><form id="menu-card-form"><div class="dialog-heading"><h2 id="menu-card-heading">練習カードを編集</h2><button type="button" data-close="menu-card-dialog" class="close-button" aria-label="閉じる">×</button></div><div class="form-grid"><label class="full">メニュー名<input id="card-title" required maxlength="100" placeholder="例：キック 25m × 4本"></label><label>分類<input id="card-category" maxlength="40" placeholder="基礎・技術・メインなど"></label><label>所要時間（分）<input id="card-minutes" type="number" min="0.5" max="240" step="0.5" required></label><label>1本の距離（m）<input id="card-distance" type="number" min="0" max="10000" step="1" required></label><label>本数<input id="card-reps" type="number" min="1" max="200" step="1" required></label><label class="full">説明・注意点<textarea id="card-note" rows="3" maxlength="1000"></textarea></label></div><p class="small">距離がない練習は0m。所要時間には説明・休憩を含めてください。</p><p id="menu-card-error" class="form-error" hidden></p><div class="dialog-actions"><button id="delete-menu-card" type="button" class="text-button danger-text" hidden>カードを削除</button><div><button type="button" data-close="menu-card-dialog" class="button secondary">キャンセル</button><button class="button primary" type="submit">カードを保存</button></div></div></form></dialog>
+<dialog id="lesson-preview-dialog" class="lesson-preview-dialog" aria-label="レッスンのプレビュー"><div class="dialog-heading no-print"><h2>レッスンのプレビュー</h2><button type="button" data-close="lesson-preview-dialog" class="close-button" aria-label="閉じる">×</button></div><div id="lesson-preview-content" class="lesson-preview-content"></div><div class="dialog-actions no-print"><button type="button" data-close="lesson-preview-dialog" class="button secondary">閉じる</button><button id="print-lesson" class="button primary">メニューを印刷</button></div></dialog>
+
+<div id="toast" class="toast" role="status" hidden></div>
+<script id="rule-data" type="application/json">__RULES__</script>
+<script id="cloud-config" type="application/json">__CONFIG__</script>
+<script>__MENUS__</script>
+<script>__CORE__</script>
+<script>__CLOUD__</script>
+<script>__PRACTICE__</script>
+<script>__APP__</script>
+</body>
+</html>
