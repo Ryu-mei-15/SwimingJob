@@ -25,6 +25,7 @@ Apps Scriptで「デプロイ」→「新しいデプロイ」→「ウェブア
 この設定で公開されるのは保存APIの入口です。名簿の取得・変更にはアプリのログインが必要で、スプレッドシート自体は非公開のままです。Google Workspaceの制限で「全員」が選べない場合は、そのアカウントの管理者による確認が必要です。
 
 発行された `https://script.google.com/macros/s/.../exec` のURLを控えます。`/dev` のURLは使用しません。
+[発行URL](https://script.google.com/macros/s/AKfycbyZjLswLmPDGY111Cs0gifoqcw5kZ6GEEMKHB7gd5zEwcX6l1Vz_Ei7npwHsQIgr1OZ/exec)
 
 ## 3. GitHub Pagesへ接続する
 
